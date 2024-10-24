@@ -29,15 +29,15 @@
 
   <body>
     <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-          <div class="preloader-inner position-relative">
-            <div class="preloader-circle"></div>
-            <div class="preloader-img pere-text">
-              <img src="assets/img/logo/back-tre.png" alt="" />
-            </div>
+      <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-inner position-relative">
+          <div class="preloader-circle"></div>
+          <div class="preloader-img pere-text">
+            <img src="assets/img/logo/back-tre.png" alt="" />
           </div>
         </div>
       </div>
+    </div>
     <div id="header-placeholder"></div>
 
     <main>
@@ -163,7 +163,7 @@
         })
         .catch((error) => console.error("Error loading wellnessTour:", error));
 
-        fetch("classicTour.html")
+      fetch("classicTour.html")
         .then((response) => response.text())
         .then((data) => {
           document.getElementById("classicTour-placeholder").innerHTML = data;

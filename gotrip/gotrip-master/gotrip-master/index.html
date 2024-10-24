@@ -28,7 +28,6 @@
     <link rel="stylesheet" href="assets/css/index.css" />
   </head>
 
-
   <body>
     <div id="preloader-active">
       <div class="preloader d-flex align-items-center justify-content-center">
@@ -404,7 +403,7 @@
         })
         .catch((error) => console.error("Error loading header:", error));
 
-        fetch("wellnessTour.html")
+      fetch("wellnessTour.html")
         .then((response) => response.text())
         .then((data) => {
           document.getElementById("wellnessTour-placeholder").innerHTML = data;
