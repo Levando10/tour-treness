@@ -57,6 +57,31 @@
       .step-container.active {
         display: block;
         opacity: 1;
+        max-height: 567px;
+        overflow: auto;
+        scroll-behavior: smooth; /* Hiệu ứng cuộn mượt */
+      }
+
+      /* Tùy chỉnh thanh cuộn (scrollbar) */
+      .step-container.active::-webkit-scrollbar {
+        width: 8px; /* Độ rộng của thanh cuộn */
+      }
+
+      /* Tùy chỉnh thanh cuộn - phần "track" */
+      .step-container.active::-webkit-scrollbar-track {
+        background: #f1f1f1; /* Màu nền của thanh cuộn */
+        border-radius: 10px;
+      }
+
+      /* Tùy chỉnh thanh cuộn - phần "thumb" */
+      .step-container.active::-webkit-scrollbar-thumb {
+        background: #888; /* Màu của thanh kéo cuộn */
+        border-radius: 10px; /* Bo tròn góc */
+      }
+
+      /* Khi hover vào thanh cuộn */
+      .step-container.active::-webkit-scrollbar-thumb:hover {
+        background: #555; /* Màu thanh kéo cuộn khi hover */
       }
 
       .card {
@@ -71,6 +96,7 @@
         object-fit: cover;
         margin-bottom: 10px;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 4px;
       }
 
       .step-image:hover {
@@ -108,6 +134,7 @@
         cursor: pointer;
         margin-right: 10px; /* Khoảng cách giữa 2 nút */
       }
+      
     </style>
   </head>
   <body>
@@ -147,9 +174,9 @@
           <div class="row">
             <div class="col-md-4">
               <div class="card">
-                <label>
+                <label class="custom-checkbox">
                   <img
-                    src="https://via.placeholder.com/300x200"
+                    src="assets/img/service/hoian.jpg"
                     class="step-image"
                     alt="Hanoi"
                   />
@@ -159,9 +186,9 @@
             </div>
             <div class="col-md-4">
               <div class="card">
-                <label>
+                <label class="custom-checkbox">
                   <img
-                    src="https://via.placeholder.com/300x200"
+                    src="assets/img/service/hoian.jpg"
                     class="step-image"
                     alt="Hue"
                   />
@@ -171,9 +198,9 @@
             </div>
             <div class="col-md-4">
               <div class="card">
-                <label>
+                <label class="custom-checkbox">
                   <img
-                    src="https://via.placeholder.com/300x200"
+                    src="assets/img/service/hoian.jpg"
                     class="step-image"
                     alt="DaNang"
                   />
@@ -183,7 +210,7 @@
             </div>
             <div class="col-md-4">
               <div class="card">
-                <label>
+                <label class="custom-checkbox">
                   <img
                     src="assets/img/service/hoian.jpg"
                     class="step-image"
@@ -195,7 +222,7 @@
             </div>
             <div class="col-md-4">
               <div class="card">
-                <label>
+                <label class="custom-checkbox">
                   <img
                     src="https://via.placeholder.com/300x200"
                     class="step-image"
@@ -207,7 +234,7 @@
             </div>
             <div class="col-md-4">
               <div class="card">
-                <label>
+                <label class="custom-checkbox">
                   <img
                     src="https://via.placeholder.com/300x200"
                     class="step-image"
@@ -478,26 +505,89 @@
 
       function renderStep3() {
         const step3Container = document.getElementById("step-3");
-        let htmlContent =
-          "<h3 class='text-center'>Step 3: Your Tour</h3><div class='row'>";
+        let htmlContent = "<h3 class='text-center'>Step 3: Your Tour</h3>";
 
         // Duyệt qua danh sách các địa điểm đã chọn và tạo các row tương ứng
         selectedDestinations.forEach((destination) => {
+          let details = "";
+
+          // Kiểm tra và thêm chi tiết cho từng điểm đến
+          if (destination === "Hue") {
+            details = `
+        <ul>
+          <li><input type="checkbox" /> 45-minute walking meditation session.</li>
+          <li><input type="checkbox" /> Visit Hiên Trà Nhị Độ Mai for a lotus tea-making session.</li>
+          <li><input type="checkbox" /> Enjoy a spa treatment at the resort.</li>
+          <li><input type="checkbox" /> Explore the farm and relax with a natural hot mineral spring experience at Alba.</li>
+          <li><input type="checkbox" /> Participate in a sound healing session with traditional instruments.</li>
+          <li><input type="checkbox" /> Visit a Traditional Craft Village to make and design conical hats.</li>
+        </ul>
+      `;
+          } else if (destination === "Ha Noi") {
+            details = `
+        <ul>
+          <li><input type="checkbox" /> Visit Ho Chi Minh Mausoleum.</li>
+          <li><input type="checkbox" /> Explore the Old Quarter by cyclo.</li>
+          <li><input type="checkbox" /> Attend a traditional water puppet show.</li>
+          <li><input type="checkbox" /> Visit the Temple of Literature.</li>
+        </ul>
+      `;
+          } else if (destination === "Da Nang") {
+            details = `
+        <ul>
+          <li><input type="checkbox" /> Join a lantern-making workshop.</li>
+          <li><input type="checkbox" /> Explore the ancient town of Hoi An.</li>
+          <li><input type="checkbox" /> Take a cooking class with a local chef.</li>
+        </ul>
+      `;
+          } else if (destination === "Hoi An") {
+            details = `
+        <ul>
+          <li><input type="checkbox" /> Join a lantern-making workshop.</li>
+          <li><input type="checkbox" /> Explore the ancient town of Hoi An.</li>
+          <li><input type="checkbox" /> Take a cooking class with a local chef.</li>
+        </ul>
+      `;
+          } else if (destination === "Ninh Binh") {
+            details = `
+        <ul>
+          <li><input type="checkbox" /> Join a lantern-making workshop.</li>
+          <li><input type="checkbox" /> Explore the ancient town of Hoi An.</li>
+          <li><input type="checkbox" /> Take a cooking class with a local chef.</li>
+        </ul>
+      `;
+          } else if (destination === "Quang Ninh") {
+            details = `
+        <ul>
+          <li><input type="checkbox" /> Join a lantern-making workshop.</li>
+          <li><input type="checkbox" /> Explore the ancient town of Hoi An.</li>
+          <li><input type="checkbox" /> Take a cooking class with a local chef.</li>
+        </ul>
+      `;
+          }
+
+          // Tạo ra thẻ HTML cho từng địa điểm đã chọn
+          // Tạo ra thẻ HTML cho từng địa điểm đã chọn với layout 2 cột
           htmlContent += `
-        <div class="col-md-4">
+      <div class="row mb-4">
+        <!-- Cột bên trái: hình ảnh -->
+        <div class="col-md-5">
           <div class="card">
-            <a href="detail-${destination
-              .replace(/\s+/g, "")
-              .toLowerCase()}.html">
-              <img src="https://via.placeholder.com/300x200" class="step-image" alt="${destination}" />
-              <h4>${destination}</h4>
-            </a>
+            <img src="https://via.placeholder.com/300x200" class="step-image" alt="${destination}" />
           </div>
         </div>
-      `;
+
+        <!-- Cột bên phải: tên tour và các chi tiết -->
+        <div class="col-md-7 d-flex flex-column">
+          <h4>${destination}</h4>
+          <div class="tour-details">
+            ${details}
+          </div>
+        </div>
+      </div>
+    `;
         });
 
-        htmlContent += "</div>";
         step3Container.innerHTML = htmlContent;
       }
 
