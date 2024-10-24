@@ -134,7 +134,6 @@
         cursor: pointer;
         margin-right: 10px; /* Khoảng cách giữa 2 nút */
       }
-      
     </style>
   </head>
   <body>
@@ -224,7 +223,7 @@
               <div class="card">
                 <label class="custom-checkbox">
                   <img
-                    src="https://via.placeholder.com/300x200"
+                    src="assets/img/service/hagiang.jpg"
                     class="step-image"
                     alt="NinhBinh"
                   />
@@ -418,6 +417,15 @@
       const prevBtn = document.querySelector(".prev-step-btn");
       let currentStep = 1;
 
+      const destinationImages = {
+        "Hue": "assets/img/service/hoian.jpg",
+        "Ha Noi": "assets/img/service/Khanh_hoa.jpeg",
+        "Da Nang": "assets/img/service/hoian.jpg",
+        "Hoi An": "assets/img/service/Khanh_hoa.jpeg",
+        "Ninh Binh": "assets/img/service/hagiang.jpg",
+        "Quang Ninh": "assets/img/service/hoian.jpg",
+      };
+
       function showStep(step) {
         // Tắt hiện step hiện tại với độ trễ
         document
@@ -566,14 +574,16 @@
       `;
           }
 
+      // Lấy URL ảnh từ đối tượng destinationImages
+    const imageUrl = destinationImages[destination] || "https://via.placeholder.com/300x200";
+
           // Tạo ra thẻ HTML cho từng địa điểm đã chọn
-          // Tạo ra thẻ HTML cho từng địa điểm đã chọn với layout 2 cột
           htmlContent += `
       <div class="row mb-4">
         <!-- Cột bên trái: hình ảnh -->
         <div class="col-md-5">
           <div class="card">
-            <img src="https://via.placeholder.com/300x200" class="step-image" alt="${destination}" />
+            <img src="${imageUrl}" class="step-image" alt="${destination}" />
           </div>
         </div>
 
