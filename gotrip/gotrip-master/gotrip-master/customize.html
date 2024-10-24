@@ -30,7 +30,7 @@
     <style>
       span {
         font-family: "Barlow Condensed" !important;
-        color:  #264247;
+        color: #264247;
         font-weight: 500;
       }
       .step-header {
@@ -302,7 +302,6 @@
         <!-- Step 3: Your Tour -->
         <div class="step-container" id="step-3">
           <h3 class="text-center">Step 3: Your Tour</h3>
-          
         </div>
 
         <!-- Step 4: Image Search -->
@@ -339,8 +338,8 @@
           </form>
         </div>
 
-         <!-- Step Navigation Buttons -->
-         <div class="step-navigation">
+        <!-- Step Navigation Buttons -->
+        <div class="step-navigation">
           <button
             class="prev-step-btn"
             onclick="prevStep()"
@@ -351,11 +350,9 @@
           <button class="next-step-btn" onclick="nextStep()">Next Step</button>
         </div>
 
-         <!-- Favourite Places Start -->
-      <div id="wellnessTour-placeholder"></div>
-      <!-- Favourite Places End -->
-
-       
+        <!-- Favourite Places Start -->
+        <div id="wellnessTour-placeholder"></div>
+        <!-- Favourite Places End -->
       </div>
 
       <!-- Blog Area End -->
@@ -390,6 +387,7 @@
 
     <script src="./assets/js/main.js"></script>
     <script>
+      let selectedDestinations = [];
       const prevBtn = document.querySelector(".prev-step-btn");
       let currentStep = 1;
 
@@ -423,6 +421,10 @@
 
         updateNavigationButtons(step);
         currentStep = step;
+        if (step === 3) {
+          updateSelectedDestinations();
+          renderStep3(); // Cập nhật nội dung cho step 3 dựa trên các lựa chọn
+        }
       }
 
       function nextStep() {
@@ -436,7 +438,6 @@
           showStep(currentStep - 1);
         }
       }
-
 
       function updateNavigationButtons(step) {
         const prevBtn = document.querySelector(".prev-step-btn");
@@ -455,6 +456,49 @@
           prevBtn.style.display = "inline-block";
           nextBtn.style.display = "none";
         }
+      }
+
+      function updateSelectedDestinations() {
+        selectedDestinations = [];
+        document
+          .querySelectorAll("#step-1 input[type='checkbox']")
+          .forEach((checkbox, index) => {
+            if (checkbox.checked) {
+              selectedDestinations.push(
+                checkbox.parentElement.textContent.trim()
+              );
+            }
+          });
+
+        // Nếu không có lựa chọn nào, thêm "Hanoi" vào mặc định
+        if (selectedDestinations.length === 0) {
+          selectedDestinations.push("Ha Noi");
+        }
+      }
+
+      function renderStep3() {
+        const step3Container = document.getElementById("step-3");
+        let htmlContent =
+          "<h3 class='text-center'>Step 3: Your Tour</h3><div class='row'>";
+
+        // Duyệt qua danh sách các địa điểm đã chọn và tạo các row tương ứng
+        selectedDestinations.forEach((destination) => {
+          htmlContent += `
+        <div class="col-md-4">
+          <div class="card">
+            <a href="detail-${destination
+              .replace(/\s+/g, "")
+              .toLowerCase()}.html">
+              <img src="https://via.placeholder.com/300x200" class="step-image" alt="${destination}" />
+              <h4>${destination}</h4>
+            </a>
+          </div>
+        </div>
+      `;
+        });
+
+        htmlContent += "</div>";
+        step3Container.innerHTML = htmlContent;
       }
 
       fetch("footer.html")
