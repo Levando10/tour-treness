@@ -1,0 +1,278 @@
+.tour-title {
+  font-size: 34px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.point {
+  display: inline-block;
+  margin-right: 12px;
+  padding: 2px 6px;
+  color: #fff;
+  background: #2d572c;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.tour-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.font-size-sub {
+  color: #777;
+  font-size: 16px;
+}
+
+.tour-meta .fa-clock-o,
+.tour-meta .fa-map-marker {
+  margin-right: 5px;
+}
+
+.main-tour-image img {
+  border-radius: 16px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.additional-tour-images img {
+  border-radius: 8px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.main-tour-image img,
+.additional-tour-images img {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main-tour-image img:hover,
+.additional-tour-images img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+
+.section-title {
+  font-size: 26px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.itinerary-section .itinerary-item {
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+}
+
+.itinerary-day {
+  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+  color: #2d572c;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: max-content;
+}
+
+.itinerary-day:hover {
+  color: #2d572c;
+}
+
+.itinerary-day::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background-color: #2d572c;
+  transition: width 0.3s ease;
+}
+
+.itinerary-day:hover::after {
+  width: 100%;
+}
+
+.itinerary-day::before {
+  content: "•";
+  margin-right: 8px;
+  font-size: 24px;
+  color: #2d572c;
+}
+
+.itinerary-content {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.4s ease, transform 0.4s ease;
+  color: #555;
+}
+
+.itinerary-content-detail {
+  margin-left: 8px;
+}
+
+.itinerary-item.active .itinerary-content {
+  max-height: 800px;
+  opacity: 1;
+  transform: translateY(0);
+  padding-top: 10px;
+}
+
+.itinerary-content img {
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.itinerary-content figcaption {
+  font-size: 14px;
+  color: #777;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.bottom-unset {
+  margin-bottom: unset;
+}
+
+.fa-circle-check {
+  color: #2d572c !important;
+}
+
+.payment-section {
+  position: relative;
+}
+
+.payment-box {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.payment-box h3 {
+  font-size: 22px;
+  color: #333;
+}
+
+.payment-box button {
+  width: 100%;
+  font-size: 16px;
+}
+
+.payment-box p {
+  font-size: 14px;
+  color: #666;
+}
+
+.btn-booking {
+  background-color: #2d572c !important;
+  border-radius: 4px !important;
+}
+
+/* Sticky header navigation */
+.sticky-header {
+  position: sticky;
+  top: 102px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+  padding: 20px 0;
+  z-index: 2;
+  text-align: center;
+}
+
+.sticky-header ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.sticky-header ul li {
+  font-weight: bold;
+  position: relative;
+}
+
+.sticky-header ul li a {
+  text-decoration: none;
+  color: #2d572c;
+  transition: color 0.3s ease;
+}
+
+.sticky-header ul li a:hover {
+  color: #2d572c;
+}
+
+.section {
+  padding: 40px 0;
+}
+
+.sticky-header a:hover {
+  color: #2d572c;
+}
+
+.sticky-header a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background-color: #2d572c;
+  transition: width 0.3s ease;
+}
+
+.sticky-header a:hover::after {
+  width: 100%;
+}
+
+
+#overview,
+#detailed-itinerary,
+#carbon-data {
+  padding-top: 120px;
+  margin-top: -120px !important;
+}
+
+/* modal carbon */
+
+.modal-header {
+  background-color: #2d572c;
+}
+
+.modal-title {
+  color: #ddd;
+}
+
+.modal-dialog {
+  max-width: 1080px;
+  margin: auto;
+  margin-top: 10%;
+}
+
+.modal-content {
+  max-height: 600px;
+  overflow-y: auto;
+  border-radius: 8px;
+}
+
+.modal-body img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.modal-body p {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
