@@ -254,7 +254,7 @@
 }
 
 .modal-dialog {
-  max-width: 1080px;
+  max-width: 1000px;
   margin: auto;
   margin-top: 10%;
 }
@@ -272,7 +272,11 @@
 
 .modal-body p {
   color: #666;
-  font-size: 16px;
+  font-size: 14px !important;
   line-height: 1.6;
 }
 
+.img-carbon  {
+  width: 400px;
+  height: 400px;
+}
