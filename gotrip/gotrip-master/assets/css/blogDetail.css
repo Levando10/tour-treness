@@ -1,5 +1,10 @@
+*  body{
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+
+}
+
 .tour-title {
-  font-size: 34px;
+  font-size: 30px;
   font-weight: bold;
   margin-bottom: 10px;
 }
@@ -58,7 +63,7 @@
 
 
 .section-title {
-  font-size: 26px;
+  font-size: 24px !important;
   font-weight: bold;
   margin-top: 20px;
 }
@@ -151,16 +156,13 @@
 }
 
 .payment-box {
+  margin-top: 8px;
   background-color: #f8f9fa;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.payment-box h3 {
-  font-size: 22px;
-  color: #333;
-}
 
 .payment-box button {
   width: 100%;
@@ -204,12 +206,12 @@
 
 .sticky-header ul li a {
   text-decoration: none;
-  color: #2d572c;
+  color: #2d572c !important;
   transition: color 0.3s ease;
 }
 
 .sticky-header ul li a:hover {
-  color: #2d572c;
+  color: #2d572c !important;
 }
 
 .section {
@@ -217,7 +219,7 @@
 }
 
 .sticky-header a:hover {
-  color: #2d572c;
+  color: #2d572c !important;
 }
 
 .sticky-header a::after {
@@ -227,7 +229,7 @@
   bottom: -2px;
   width: 0;
   height: 2px;
-  background-color: #2d572c;
+  background-color: #2d572c !important;
   transition: width 0.3s ease;
 }
 
@@ -238,7 +240,8 @@
 
 #overview,
 #detailed-itinerary,
-#carbon-data {
+#carbon-data,
+#reviews {
   padding-top: 120px;
   margin-top: -120px !important;
 }
@@ -279,4 +282,199 @@
 .img-carbon  {
   width: 400px;
   height: 400px;
+}
+
+/* Info Section Styles */
+.info-section {
+  padding-top: 20px;
+}
+
+
+
+.info-title {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.info-list {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.info-list li, .sub-list li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+  color: #506172;
+}
+
+
+.info-list li {
+  position: relative;
+  margin-bottom: 8px;
+  line-height: 1.5;
+  color: #506172;
+  padding-left: 12px;
+}
+
+.info-list li::before {
+  content: "•";
+  color: #506172 !important;
+  font-size: 1.2em;
+  position: absolute;
+  left: 0;
+  top: -4px;
+}
+
+
+
+/* review section */
+
+.customer-reviews {
+  border-bottom: 1px solid #ddd;
+}
+
+
+.reviews {
+  margin-top: 20px;
+}
+
+.review {
+  display: flex;
+  padding: 20px 0;
+}
+
+.reviewer-info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.reviewer-info img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+
+.review-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.flex-row-8 {
+  display: flex;
+  gap: 10px;
+}
+.review-rating {
+  display: inline-block;
+  background-color:  #2d572c;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  min-width: 38.75px;
+}
+
+.review h3 {
+  margin: 5px 0;
+}
+
+
+
+.section-title,
+.info-title,
+.review h3  {
+  color: #0B1C39 !important;
+  font-weight: bold !important;
+}
+
+.tour-description,
+.list-unstyled li,
+.review p,
+.reviewer-details {
+  color: #506172 !important;
+}
+
+.infor-title-review {
+  font-size: 24px !important;
+  font-weight: bold;
+}
+
+.review-content-title {
+  font-size: 20px !important;
+}
+
+.reviewer-details p,
+.review-content p {
+  margin-bottom: unset !important;
+}
+
+.average-rating-container {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.average-rating-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #4CAF50 !important;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.average-score {
+  font-size: 2.5em;
+}
+
+.average-label {
+  font-size: 1em;
+  margin-top: 5px;
+  text-transform: uppercase;
+}
+
+.detailed-ratings {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rating-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9em;
+}
+
+.rating-item span {
+  min-width: 112px;
+}
+
+.rating-bar {
+  flex: 1;
+  height: 8px;
+  background-color: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.rating-bar .fill {
+  height: 100%;
+  background-color: #4CAF50;
+  border-radius: 5px;
 }
