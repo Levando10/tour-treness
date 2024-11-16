@@ -1,249 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Travel HTML-5 Template</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Multi-step Form</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png" />
+    <!-- Bootstrap 4.1.3 CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>Travel HTML-5 Template</title>
-  <meta name="description" content="" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Multi-step Form</title>
-  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png" />
-  <!-- Bootstrap 4.1.3 CSS -->
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Flatpickr CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
 
-  <!-- Flatpickr CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- CSS here -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/css/slicknav.css" />
+    <link rel="stylesheet" href="assets/css/animate.min.css" />
+    <link rel="stylesheet" href="assets/css/magnific-popup.css" />
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="assets/css/themify-icons.css" />
+    <link rel="stylesheet" href="assets/css/themify-icons.css" />
+    <link rel="stylesheet" href="assets/css/slick.css" />
+    <link rel="stylesheet" href="assets/css/nice-select.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <style>
+      span {
+        font-family: "Barlow Condensed" !important;
+        color: #264247;
+        font-weight: 500;
+      }
 
-  <!-- CSS here -->
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
-  <link rel="stylesheet" href="assets/css/slicknav.css" />
-  <link rel="stylesheet" href="assets/css/animate.min.css" />
-  <link rel="stylesheet" href="assets/css/magnific-popup.css" />
-  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
-  <link rel="stylesheet" href="assets/css/themify-icons.css" />
-  <link rel="stylesheet" href="assets/css/themify-icons.css" />
-  <link rel="stylesheet" href="assets/css/slick.css" />
-  <link rel="stylesheet" href="assets/css/nice-select.css" />
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="stylesheet" href="assets/css/responsive.css" />
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-  <style>
-    span {
-      font-family: "Barlow Condensed" !important;
-      color: #264247;
-      font-weight: 500;
-    }
+      .step-header {
+        display: inline-block;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-weight: bold;
+      }
 
-    .step-header {
-      display: inline-block;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+      .step-header.active {
+        background-color: #2d572c;
+        color: #fff;
+        border-radius: 5px;
+      }
 
-    .step-header.active {
-      background-color: #2d572c;
-      color: #fff;
-      border-radius: 5px;
-    }
+      .step-container {
+        padding: 20px;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        height: 565.59px !important;
+      }
 
-    .step-container {
-      padding: 20px;
-      display: none;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      height: 565.59px !important;
-    }
+      .step-container.active {
+        display: block;
+        opacity: 1;
+        max-height: 567px;
+        overflow: auto;
+        scroll-behavior: smooth;
+        /* Hiệu ứng cuộn mượt */
+      }
 
-    .step-container.active {
-      display: block;
-      opacity: 1;
-      max-height: 567px;
-      overflow: auto;
-      scroll-behavior: smooth;
-      /* Hiệu ứng cuộn mượt */
-    }
+      /* Tùy chỉnh thanh cuộn (scrollbar) */
+      .step-container.active::-webkit-scrollbar {
+        width: 8px;
+        /* Độ rộng của thanh cuộn */
+      }
 
-    /* Tùy chỉnh thanh cuộn (scrollbar) */
-    .step-container.active::-webkit-scrollbar {
-      width: 8px;
-      /* Độ rộng của thanh cuộn */
-    }
+      /* Tùy chỉnh thanh cuộn - phần "track" */
+      .step-container.active::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        /* Màu nền của thanh cuộn */
+        border-radius: 10px;
+      }
 
-    /* Tùy chỉnh thanh cuộn - phần "track" */
-    .step-container.active::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      /* Màu nền của thanh cuộn */
-      border-radius: 10px;
-    }
+      /* Tùy chỉnh thanh cuộn - phần "thumb" */
+      .step-container.active::-webkit-scrollbar-thumb {
+        background: #888;
+        /* Màu của thanh kéo cuộn */
+        border-radius: 10px;
+        /* Bo tròn góc */
+      }
 
-    /* Tùy chỉnh thanh cuộn - phần "thumb" */
-    .step-container.active::-webkit-scrollbar-thumb {
-      background: #888;
-      /* Màu của thanh kéo cuộn */
-      border-radius: 10px;
-      /* Bo tròn góc */
-    }
+      /* Khi hover vào thanh cuộn */
+      .step-container.active::-webkit-scrollbar-thumb:hover {
+        background: #555;
+        /* Màu thanh kéo cuộn khi hover */
+      }
 
-    /* Khi hover vào thanh cuộn */
-    .step-container.active::-webkit-scrollbar-thumb:hover {
-      background: #555;
-      /* Màu thanh kéo cuộn khi hover */
-    }
+      .card {
+        border: none;
+        text-align: center;
+      }
 
-    .card {
-      border: none;
-      text-align: center;
-    }
+      .step-image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        margin-bottom: 10px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 4px;
+      }
 
-    .step-image {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      margin-bottom: 10px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border-radius: 4px;
-    }
+      .step-image:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+      }
 
-    .step-image:hover {
-      transform: scale(1.05);
-      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-    }
+      .other-destinations textarea {
+        width: 100%;
+        min-height: 100px;
+      }
 
-    .other-destinations textarea {
-      width: 100%;
-      min-height: 100px;
-    }
+      .next-step-btn {
+        background-color: #2d572c !important;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
 
-    .next-step-btn {
-      background-color: #2d572c !important;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+      .step-navigation {
+        text-align: right;
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+      }
 
-    .step-navigation {
-      text-align: right;
-      margin-top: 20px;
-      display: flex;
-      justify-content: space-between;
-    }
+      .prev-step-btn {
+        background-color: #6c757d;
+        /* Màu xám */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+        /* Khoảng cách giữa 2 nút */
+      }
 
-    .prev-step-btn {
-      background-color: #6c757d;
-      /* Màu xám */
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-right: 10px;
-      /* Khoảng cách giữa 2 nút */
-    }
+      #step-2 .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: box-shadow 0.3s ease;
+      }
 
-    #step-2 .card {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-      transition: box-shadow 0.3s ease;
-    }
+      #step-2 .card:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
 
-    #step-2 .card:hover {
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+      #step-2 .card img {
+        height: 150px;
+        object-fit: cover;
+      }
 
-    #step-2 .card img {
-      height: 150px;
-      object-fit: cover;
-    }
+      .input-group {
+        display: flex;
+        align-items: center;
+      }
 
-    .input-group {
-      display: flex;
-      align-items: center;
-    }
+      .input-group button {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        text-align: center;
+      }
 
-    .input-group button {
-      width: 40px;
-      height: 40px;
-      font-size: 20px;
-      text-align: center;
-    }
+      .input-group input {
+        text-align: center;
+        width: 80px;
+        /* Chỉnh kích thước input */
+      }
 
-    .input-group input {
-      text-align: center;
-      width: 80px;
-      /* Chỉnh kích thước input */
-    }
+      #travel-companions:invalid {
+        border-color: red;
+      }
 
-    #travel-companions:invalid {
-      border-color: red;
-    }
+      #travel-companions:valid {
+        border-color: #2d572c;
+      }
 
-    #travel-companions:valid {
-      border-color: #2d572c;
-    }
+      .is-invalid {
+        border-color: red;
+      }
 
-    .is-invalid {
-      border-color: red;
-    }
+      .text-danger {
+        font-size: 0.875rem;
+      }
 
-    .text-danger {
-      font-size: 0.875rem;
-    }
+      .btn-outline-secondary {
+        border: 1px solid #ccc;
+        background-color: #fff;
+        color: #333;
+        padding: 10px 16px;
+        font-size: 18px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
 
-    .btn-outline-secondary {
-      border: 1px solid #ccc;
-      background-color: #fff;
-      color: #333;
-      padding: 10px 16px;
-      font-size: 18px;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-    }
+      .btn-outline-secondary:hover {
+        background-color: #2d572c;
+        border-color: #888;
+        color: black;
+      }
 
-    .btn-outline-secondary:hover {
-      background-color: #2d572c;
-      border-color: #888;
-      color: black;
+      /* Hiệu ứng khi nút được nhấn */
+      .btn-outline-secondary:active {
+        border-color: #2d572c;
+      }
 
-    }
+      .text-number {
+        margin: 0 4px;
+        border-radius: 4px !important;
+      }
 
-    /* Hiệu ứng khi nút được nhấn */
-    .btn-outline-secondary:active {
-      border-color: #2d572c;
-    }
+      .form-label {
+        font-weight: 700;
+        font-size: 16px;
+      }
 
-    .text-number {
-      margin: 0 4px;
-      border-radius: 4px !important;
-    }
+      .form-label-sub {
+        font-weight: 500;
+        font-size: 14px;
+      }
+    </style>
+  </head>
 
-    .form-label {
-      font-weight: 700;
-      font-size: 16px;
-    }
-
-    .form-label-sub {
-      font-weight: 500;
-      font-size: 14px;
-    }
-  </style>
-</head>
-
-<body>
-  <!-- <div id="preloader-active">
+  <body>
+    <!-- <div id="preloader-active">
       <div class="preloader d-flex align-items-center justify-content-center">
         <div class="preloader-inner position-relative">
           <div class="preloader-circle"></div>
@@ -253,568 +258,900 @@
         </div>
       </div>
     </div> -->
-  <div id="header-placeholder"></div>
+    <div id="header-placeholder"></div>
 
-  <main>
-    <div class="container">
-      <!-- Step Navigation Headers -->
-      <div class="step-headers text-center">
-        <span class="step-header active" onclick="showStep(1)">Step 1: Destinations</span>
-        <span class="step-header" onclick="showStep(2)">Step 2: Accommodation</span>
-        <span class="step-header" onclick="showStep(3)">Step 3: Activities</span>
-        <span class="step-header" onclick="showStep(4)">Step 4: Your Tour</span>
-        <span class="step-header" onclick="showStep(5)">Step 5: Your Information</span>
-      </div>
-
-      <!-- Step 1: Destinations -->
-      <div class="step-container active" id="step-1">
-        <h3 class="text-center">Step 1: Destinations</h3>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="card">
-              <label class="custom-checkbox">
-                <img src="assets/img/service/HaNoi/Hanoi.jpg" class="step-image" alt="Hanoi" />
-                <input type="checkbox" /> Ha Noi
-              </label>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card">
-              <label class="Accocustom-checkbox">
-                <img src="assets/img/service/Hue/Hue.jpg" class="step-image" alt="Hue" />
-                <input type="checkbox" /> Hue
-              </label>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card">
-              <label class="custom-checkbox">
-                <img src="assets/img/service/Danang.jpg" class="step-image" alt="DaNang" />
-                <input type="checkbox" /> Da Nang
-              </label>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card">
-              <label class="custom-checkbox">
-                <img src="assets/img/service/HoiAn/hoianhoanghon.jpg" class="step-image" alt="HoiAn" />
-                <input type="checkbox" /> Hoi An
-              </label>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card">
-              <label class="custom-checkbox">
-                <img src="assets/img/service/NinhBinh/Ninh Binh.jpg" class="step-image" alt="NinhBinh" />
-                <input type="checkbox" /> Ninh Binh
-              </label>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card">
-              <label class="custom-checkbox">
-                <img src="assets/img/service/QuangNinh/halongbayhoanghon.jpg" class="step-image" alt="QuangNinh" />
-                <input type="checkbox" /> Quang Ninh
-              </label>
-            </div>
-          </div>
+    <main>
+      <div class="container">
+        <!-- Step Navigation Headers -->
+        <div class="step-headers text-center">
+          <span class="step-header active" onclick="showStep(1)"
+            >Step 1: Destinations</span
+          >
+          <span class="step-header" onclick="showStep(2)"
+            >Step 2: Accommodation</span
+          >
+          <span class="step-header" onclick="showStep(3)"
+            >Step 3: Activities</span
+          >
+          <span class="step-header" onclick="showStep(4)"
+            >Step 4: Your Tour</span
+          >
+          <span class="step-header" onclick="showStep(5)"
+            >Step 5: Your Information</span
+          >
         </div>
-      </div>
 
-      <div class="step-container" id="step-2">
-        <h3 class="text-center mb-4">Step 2: Accommodation</h3>
-
-        <div class="row">
-          <!-- Left Section -->
-          <div class="col-md-6">
-            <!-- Calendar -->
-            <div class="mb-4">
-              <label for="travel-calendar" class="form-label">Select Your Travel Dates:</label>
-              <div class="input-group">
-                <input type="text" id="travel-calendar" class="form-control">
-                <span class="input-group-text" style="height: 38px;">
-                  <i class="fas fa-calendar-alt"></i> <!-- Icon lịch -->
-                </span>
+        <!-- Step 1: Destinations -->
+        <div class="step-container active" id="step-1">
+          <h3 class="text-center">Step 1: Destinations</h3>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card">
+                <label class="custom-checkbox">
+                  <img
+                    src="assets/img/service/HaNoi/Hanoi.jpg"
+                    class="step-image"
+                    alt="Hanoi"
+                  />
+                  <input type="checkbox" /> Ha Noi
+                </label>
               </div>
             </div>
-
-            <!-- Question: Who will travel with you? -->
-
-            <div class="mb-4">
-              <label for="travel-companions" class="form-label">Who will travel with you?</label>
-
-              <!-- Người lớn -->
-              <div class="mb-2">
-                <label for="adults" class="form-label-sub">Adults (Age > 11):</label>
-                <div class="input-group">
-                  <button class="btn btn-outline-secondary" type="button" id="decrease-adults">-</button>
-                  <input type="number" id="adults" class="text-number form-control text-center" value="1" min="1"
-                    max="20" step="1" aria-label="Number of adults">
-                  <button class="btn btn-outline-secondary" type="button" id="increase-adults">+</button>
-                </div>
+            <div class="col-md-4">
+              <div class="card">
+                <label class="Accocustom-checkbox">
+                  <img
+                    src="assets/img/service/Hue/Hue.jpg"
+                    class="step-image"
+                    alt="Hue"
+                  />
+                  <input type="checkbox" /> Hue
+                </label>
               </div>
-
-              <!-- Trẻ em -->
-              <div class="mb-2">
-                <label for="children" class="form-label-sub">Children (Age 0-11):</label>
-                <div class="input-group">
-                  <button class="btn btn-outline-secondary" type="button" id="decrease-children">-</button>
-                  <input type="number" id="children" class="text-number form-control text-center" value="0" min="0"
-                    max="20" step="1" aria-label="Number of children">
-                  <button class=" btn-outline-secondary" type="button" id="increase-children">+</button>
-                </div>
-              </div>
-
-              <!-- Error message -->
-              <small id="error-message" class="text-danger" style="display: none;">Please enter a valid number.</small>
             </div>
-
-          </div>
-
-          <!-- Right Section -->
-          <div class="col-md-6">
-            <!-- Hotel Style -->
-            <label class="form-label">Hotel Style:</label>
-            <div class="row">
-              <!-- Luxury -->
-              <div class="col-6 mb-3">
-                <div class="card">
-                  <img src="assets/img/service/luxury.jpg" class="card-img-top" alt="Luxury Hotel">
-                  <div class="card-body text-center">
-                    <input type="radio" name="hotelStyle" id="luxury" value="Luxury">
-                    <label for="luxury">Luxury (4 - 5 stars)</label>
-                  </div>
-                </div>
+            <div class="col-md-4">
+              <div class="card">
+                <label class="custom-checkbox">
+                  <img
+                    src="assets/img/service/Danang.jpg"
+                    class="step-image"
+                    alt="DaNang"
+                  />
+                  <input type="checkbox" /> Da Nang
+                </label>
               </div>
-              <!-- Comfort -->
-              <div class="col-6 mb-3">
-                <div class="card">
-                  <img src="assets/img/service/comfort.jpg" class="card-img-top" alt="Comfort Hotel">
-                  <div class="card-body text-center">
-                    <input type="radio" name="hotelStyle" id="comfort" value="Comfort">
-                    <label for="comfort">Comfort (3 - 4 stars)</label>
-                  </div>
-                </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card">
+                <label class="custom-checkbox">
+                  <img
+                    src="assets/img/service/HoiAn/hoianhoanghon.jpg"
+                    class="step-image"
+                    alt="HoiAn"
+                  />
+                  <input type="checkbox" /> Hoi An
+                </label>
               </div>
-              <!-- Standard -->
-              <div class="col-6 mb-3">
-                <div class="card">
-                  <img src="assets/img/service/standard.jpg" class="card-img-top" alt="Standard Hotel">
-                  <div class="card-body text-center">
-                    <input type="radio" name="hotelStyle" id="standard" value="Standard">
-                    <label for="standard">Standard (2 - 3 stars)</label>
-                  </div>
-                </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card">
+                <label class="custom-checkbox">
+                  <img
+                    src="assets/img/service/NinhBinh/Ninh Binh.jpg"
+                    class="step-image"
+                    alt="NinhBinh"
+                  />
+                  <input type="checkbox" /> Ninh Binh
+                </label>
               </div>
-              <!-- Self Booking -->
-              <div class="col-6 mb-3">
-                <div class="card">
-                  <img src="assets/img/service/selfBooking.jpg" class="card-img-top" alt="Self Booking">
-                  <div class="card-body text-center">
-                    <input type="radio" name="hotelStyle" id="selfBooking" value="SelfBooking">
-                    <label for="selfBooking">Self Booking</label>
-                  </div>
-                </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card">
+                <label class="custom-checkbox">
+                  <img
+                    src="assets/img/service/QuangNinh/halongbayhoanghon.jpg"
+                    class="step-image"
+                    alt="QuangNinh"
+                  />
+                  <input type="checkbox" /> Quang Ninh
+                </label>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Step 3: Activities -->
-      <div class="step-container" id="step-3">
-        <h3 class="text-center">Step 3: Activities</h3>
-      </div>
+        <div class="step-container" id="step-2">
+          <h3 class="text-center mb-4">Step 2: Accommodation</h3>
 
-      <!-- Step 4: Image Search -->
-      <div class="step-container" id="step-4">
-        <h3 class="text-center">Step 4: Your Tour</h3>
+          <div class="row">
+            <!-- Left Section -->
+            <div class="col-md-6">
+              <!-- Calendar -->
+              <div class="mb-4">
+                <label for="travel-calendar" class="form-label"
+                  >Select Your Travel Dates:</label
+                >
+                <div class="input-group">
+                  <input
+                    type="text"
+                    id="travel-calendar"
+                    class="form-control"
+                  />
+                  <span class="input-group-text" style="height: 38px">
+                    <i class="fas fa-calendar-alt"></i>
+                    <!-- Icon lịch -->
+                  </span>
+                </div>
+              </div>
 
-      </div>
+              <!-- Question: Who will travel with you? -->
 
-      <!-- Step 5:  -->
-      <div class="step-container" id="step-5">
-        <h3 class="text-center">Step 5: Your Information</h3>
-        <form>
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter your name" />
+              <div class="mb-4">
+                <label for="travel-companions" class="form-label"
+                  >Who will travel with you?</label
+                >
+
+                <!-- Người lớn -->
+                <div class="mb-2">
+                  <label for="adults" class="form-label-sub"
+                    >Adults (Age > 11):</label
+                  >
+                  <div class="input-group">
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      id="decrease-adults"
+                    >
+                      -
+                    </button>
+                    <input
+                      type="number"
+                      id="adults"
+                      class="text-number form-control text-center"
+                      value="1"
+                      min="1"
+                      max="20"
+                      step="1"
+                      aria-label="Number of adults"
+                    />
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      id="increase-adults"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Trẻ em -->
+                <div class="mb-2">
+                  <label for="children" class="form-label-sub"
+                    >Children (Age 0-11):</label
+                  >
+                  <div class="input-group">
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      id="decrease-children"
+                    >
+                      -
+                    </button>
+                    <input
+                      type="number"
+                      id="children"
+                      class="text-number form-control text-center"
+                      value="0"
+                      min="0"
+                      max="20"
+                      step="1"
+                      aria-label="Number of children"
+                    />
+                    <button
+                      class="btn-outline-secondary"
+                      type="button"
+                      id="increase-children"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Error message -->
+                <small
+                  id="error-message"
+                  class="text-danger"
+                  style="display: none"
+                  >Please enter a valid number.</small
+                >
+              </div>
+            </div>
+
+            <!-- Right Section -->
+            <div class="col-md-6">
+              <!-- Hotel Style -->
+              <label class="form-label">Hotel Style:</label>
+              <div class="row">
+                <!-- Luxury -->
+                <div class="col-6 mb-3">
+                  <div class="card">
+                    <img
+                      src="assets/img/service/luxury.jpg"
+                      class="card-img-top"
+                      alt="Luxury Hotel"
+                    />
+                    <div class="card-body text-center">
+                      <input
+                        type="radio"
+                        name="hotelStyle"
+                        id="luxury"
+                        value="Luxury"
+                      />
+                      <label for="luxury">Luxury (4 - 5 stars)</label>
+                    </div>
+                  </div>
+                </div>
+                <!-- Comfort -->
+                <div class="col-6 mb-3">
+                  <div class="card">
+                    <img
+                      src="assets/img/service/comfort.jpg"
+                      class="card-img-top"
+                      alt="Comfort Hotel"
+                    />
+                    <div class="card-body text-center">
+                      <input
+                        type="radio"
+                        name="hotelStyle"
+                        id="comfort"
+                        value="Comfort"
+                      />
+                      <label for="comfort">Comfort (3 - 4 stars)</label>
+                    </div>
+                  </div>
+                </div>
+                <!-- Standard -->
+                <div class="col-6 mb-3">
+                  <div class="card">
+                    <img
+                      src="assets/img/service/standard.jpg"
+                      class="card-img-top"
+                      alt="Standard Hotel"
+                    />
+                    <div class="card-body text-center">
+                      <input
+                        type="radio"
+                        name="hotelStyle"
+                        id="standard"
+                        value="Standard"
+                      />
+                      <label for="standard">Standard (2 - 3 stars)</label>
+                    </div>
+                  </div>
+                </div>
+                <!-- Self Booking -->
+                <div class="col-6 mb-3">
+                  <div class="card">
+                    <img
+                      src="assets/img/service/selfBooking.jpg"
+                      class="card-img-top"
+                      alt="Self Booking"
+                    />
+                    <div class="card-body text-center">
+                      <input
+                        type="radio"
+                        name="hotelStyle"
+                        id="selfBooking"
+                        value="SelfBooking"
+                      />
+                      <label for="selfBooking">Self Booking</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="email">Your Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter your email" />
+        </div>
+
+        <!-- Step 3: Activities -->
+        <div class="step-container" id="step-3">
+          <h3 class="text-center">Step 3: Activities</h3>
+          <!-- item -->
+          <div id="hueID" style="display: none;" class="row mb-4">
+            <div class="col-md-5">
+              <div class="card">
+                <img
+                  src="assets/img/service/Hue/Hue.jpg"
+                  class="step-image"
+                  alt="hue"
+                />
+              </div>
+            </div>
+
+            <!-- Cột bên phải: tên tour và các chi tiết -->
+            <div class="col-md-7 d-flex flex-column">
+              <h4>HUE</h4>
+              <div class="tour-details">
+                <ul>
+                  <li>
+                    <input type="checkbox" /> Yoga and Meditation: Diverse yoga
+                    and meditation classes, ranging from mindfulness to dynamic
+                    practices.
+                  </li>
+                  <li>
+                    <input type="checkbox" /> Physical Development Focus:
+                    Specialized fitness classes such as Pilates and aerobics.
+                  </li>
+                  <li>
+                    <input type="checkbox" /> Outdoor Exercise: Participate in
+                    running, hiking, and nature-based fitness activities.
+                  </li>
+                  <li>
+                    <input type="checkbox" /> Gardening Program: Gardening and
+                    plant care to relax and improve mental well-being.
+                  </li>
+                  <li>
+                    <input type="checkbox" /> Sound Therapy and Music Healing:
+                    Stress reduction through relaxing sounds.
+                  </li>
+                  <li>
+                    <input type="checkbox" /> Spa Therapies and Massage: Skin
+                    care treatments and stress relief through massage.
+                  </li>
+                  <li>
+                    <input type="checkbox" /> Herbal Baths: Relaxing bath
+                    therapies like hot, cold, and herbal baths.
+                  </li>
+                  <li>
+                    <input type="checkbox" /> Post-Injury Recovery: Health
+                    recovery programs including physiotherapy.
+                  </li>
+                  <li>
+                    <input type="checkbox" /> Sightseeing at Famous Attractions:
+                    Visit iconic places such as Hue Imperial Citadel, Khai Dinh
+                    Tomb, Thien Mu Pagoda, etc.
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="comments">Additional Comments</label>
-            <textarea class="form-control" id="comments" rows="3" placeholder="Any additional comments"></textarea>
+
+          <!-- item -->
+          <div id="hanoiID" style="display: none;" class="row mb-4">
+            <div class="col-md-5">
+              <div class="card">
+                <img
+                  src="assets/img/service/HaNoi/Hanoi.jpg"
+                  class="step-image"
+                  alt="hanoi"
+                />
+              </div>
+            </div>
+
+            <!-- Cột bên phải: tên tour và các chi tiết -->
+            <div class="col-md-7 d-flex flex-column">
+              <h4>HA NOI</h4>
+              <div class="tour-details">
+                <ul>
+                  <li>
+                    <input type="checkbox" /> Ho Chi Minh Mausoleum: The resting
+                    place of President Ho Chi Minh, a significant historical
+                    site with solemn architecture and expansive grounds.
+                  </li>
+                  <li>
+                    <input type="checkbox" /> One Pillar Pagoda: One of Hanoi is
+                    unique architectural structures, reflecting the culture of
+                    Buddhism.
+                  </li>
+                  <li>
+                    <input type="checkbox" /> Temple of Literature - Quoc Tu
+                    Giam: An ancient educational centre, marking the development
+                    of Vietnam is education system.
+                  </li>
+                  <li>
+                    <input type="checkbox" /> Hanoi Old Quarter: With over 36
+                    streets, this historic area preserves the cultural and
+                    architectural heritage of ancient Hanoi.
+                  </li>
+                  <li>
+                    <input type="checkbox" /> Vietnam Museum of Ethnology: A
+                    museum displaying cultural artefacts from 54 ethnic groups
+                    in Vietnam, offering a deeper understanding of the country's
+                    cultural diversity.
+                  </li>
+                  <li>
+                    <input type="checkbox" /> Duong Lam Ancient Village: Located
+                    not far from Hanoi, this village preserves the traditional
+                    cultural beauty of Northern Vietnam's rural life.
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-        </form>
+
+          <!-- item -->
+          <div id="danangID" style="display: none;" class="row mb-4">
+            <div class="col-md-5">
+              <div class="card">
+                <img
+                  src="assets/img/service/Danang.jpg"
+                  class="step-image"
+                  alt="dn"
+                />
+              </div>
+            </div>
+
+            <!-- Cột bên phải: tên tour và các chi tiết -->
+            <div class="col-md-7 d-flex flex-column">
+              <h4>DA NANG</h4>
+              <div class="tour-details">
+                <ul>
+                  <li>
+                    <input type="checkbox" /> Yoga: Engage in gentle Hatha or
+                    Vinyasa yoga to enhance flexibility, relaxation, and mental
+                    clarity.
+                  </li>
+                  <li>
+                    <input type="checkbox" /> Breathwork Class: Participate in a
+                    Breathwork class to release tension and increase mindfulness
+                    through guided breathing techniques.
+                  </li>
+                  <li>
+                    <input type="checkbox" /> Retreat Therapy Session: Enjoy a
+                    therapeutic retreat session focused on mental and emotional
+                    well-being.
+                  </li>
+                  <li>
+                    <input type="checkbox" /> Workshop on Creating Feng Shui
+                    Stone Bracelets: Learn to create Feng Shui stone bracelets
+                    at Non Nuoc Stone Village, where each bracelet is imbued
+                    with cultural and spiritual significance.
+                  </li>
+                  <li>
+                    <input type="checkbox" /> Relaxing Spa Services: Unwind with
+                    spa treatments designed to rejuvenate your body and mind.
+                  </li>
+                  <li>
+                    <input type="checkbox" /> Sightseeing at Famous Attractions:
+                    Visit iconic places such as Ba Na Hill, Non Nuoc Stone
+                    Carving Village, Dragon Bridge,etc.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- item -->
+          <div id="hoianID" style="display: none;"  class="row mb-4">
+            <div class="col-md-5">
+              <div class="card">
+                <img
+                  src="assets/img/service/HoiAn/hoianhoanghon.jpg"
+                  class="step-image"
+                  alt="hoian"
+                />
+              </div>
+            </div>
+
+            <!-- Cột bên phải: tên tour và các chi tiết -->
+            <div class="col-md-7 d-flex flex-column">
+              <h4>HOI AN</h4>
+              <div class="tour-details">
+                <ul>
+                  <li><input type="checkbox" /> Gardening Program: Engage in gardening and plant care to relax and improve mental well-being.</li>
+                  <li><input type="checkbox" /> Art Expression Therapy: Experience relaxation through painting and other artistic forms.</li>
+                  <li><input type="checkbox" /> Cultural Exploration: Learn about local culture, cuisine, and customs.</li>
+                  <li><input type="checkbox" /> Connection Activities: Group programs to enhance positive communication and connection.</liv>
+                  <li><input type="checkbox" /> Yoga and Meditation: Various yoga and meditation classes, from mindfulness to dynamic practices.</liv>
+                  <li><input type="checkbox" /> Emotional Therapy Through Writing: Keep a journal to release emotions and find clarity.</liv>
+                  <li><input type="checkbox" /> Immersion in Nature: Activities like camping and hiking to connect with the natural environment.</liv>
+                  <li><input type="checkbox" /> Sightseeing at Famous Attractions: Visit iconic places like Hoi An Ancient Town, Cham Islands, and Bay Mau Coconut Forest,etc.</liv>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- item -->
+          <div id="ninhbinhID" style="display: none;" class="row mb-4">
+            <div class="col-md-5">
+              <div class="card">
+                <img
+                  src="assets/img/service/NinhBinh/Ninh Binh.jpg"
+                  class="step-image"
+                  alt="nb"
+                />
+              </div>
+            </div>
+
+            <!-- Cột bên phải: tên tour và các chi tiết -->
+            <div class="col-md-7 d-flex flex-column">
+              <h4>NINH BINH</h4>
+              <div class="tour-details">
+                <ul>
+                  <li><input type="checkbox" /> Spa Services: Enjoy a variety of rejuvenating treatments at the spa.</li>
+                  <li><input type="checkbox" /> Cycling Through Nature: Explore the scenic landscapes of Cuc Phuong National Park on a bicycle ride.</li>
+                  <li><input type="checkbox" /> Workshops: Participate in engaging classes to experience the local culture.</li>
+                  <li><input type="checkbox" /> Natural Fabric Dyeing: Experience the traditional art of dyeing fabrics using natural ingredients.</li>
+                  <li><input type="checkbox" /> Conical Hat Painting: Personalise a traditional Vietnamese conical hat with your unique designs.</li>
+                  <li><input type="checkbox" /> Tree Planting: Plant trees to reconnect with nature and contribute to environmental conservation.</li>
+                  <li><input type="checkbox" /> Candle Making: Craft handmade candles in this calming and creative workshop.</li>
+                  <li><input type="checkbox" /> Sightseeing at Famous Attractions: Visit iconic places such as Trang An, Hoa Lu Ancient Capital,etc.</li>
+        
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- item -->
+          <div id="quangninhID" style="display: none;" class="row mb-4">
+            <div class="col-md-5">
+              <div class="card">
+                <img
+                  src="assets/img/service/QuangNinh/halongbayhoanghon.jpg"
+                  class="step-image"
+                  alt="qn"
+                />
+              </div>
+            </div>
+
+            <!-- Cột bên phải: tên tour và các chi tiết -->
+            <div class="col-md-7 d-flex flex-column">
+              <h4>QUANG NINH</h4>
+              <div class="tour-details">
+                <ul>
+                  <li><input type="checkbox" /> Yoga and massage: Visitors will participate in a variety of yoga activities such as: herbal steam bath, herbal bath to restore vitality, yoga practice, professional massage.</li>
+                  <li><input type="checkbox" /> Meditation: Helps visitors relax their minds.</li>
+                  <li><input type="checkbox" /> Outdoor Exercise: Kayaking and exploring the majestic natural beauty.</li>
+                  <li><input type="checkbox" /> Cooking class: Learn and practise how to prepare traditional Vietnamese dishes.</li>
+                  <li><input type="checkbox" /> Immerse yourself in nature: squid fishing on a cruise, cycling and sightseeing.</li>
+                  <li><input type="checkbox" /> Visit famous places such as: Ha Long Bay, Co To Island, Phoenix Mountain, etc.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: Your Tour -->
+        <div class="step-container" id="step-4">
+          <h3 class="text-center">Step 4: Your Tour</h3>
+        </div>
+
+        <!-- Step 5:  -->
+        <div class="step-container" id="step-5">
+          <h3 class="text-center">Step 5: Your Information</h3>
+          <form>
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                placeholder="Enter your name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Your Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="Enter your email"
+              />
+            </div>
+            <div class="form-group">
+              <label for="comments">Additional Comments</label>
+              <textarea
+                class="form-control"
+                id="comments"
+                rows="3"
+                placeholder="Any additional comments"
+              ></textarea>
+            </div>
+          </form>
+        </div>
+
+        <!-- Step Navigation Buttons -->
+        <div class="step-navigation">
+          <button
+            class="prev-step-btn"
+            onclick="prevStep()"
+            style="display: none"
+          >
+            Prev Step
+          </button>
+          <button class="next-step-btn" onclick="nextStep()">Next Step</button>
+        </div>
+
+        <!-- Favourite Places Start -->
+        <div id="wellnessTour-placeholder"></div>
+        <!-- Favourite Places End -->
       </div>
 
-      <!-- Step Navigation Buttons -->
-      <div class="step-navigation">
-        <button class="prev-step-btn" onclick="prevStep()" style="display: none">
-          Prev Step
-        </button>
-        <button class="next-step-btn" onclick="nextStep()">Next Step</button>
-      </div>
+      <!-- Blog Area End -->
+      <div id="footer-placeholder"></div>
+    </main>
 
-      <!-- Favourite Places Start -->
-      <div id="wellnessTour-placeholder"></div>
-      <!-- Favourite Places End -->
-    </div>
+    <!-- Bootstrap 4.1.3 JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/popper.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="./assets/js/jquery.slicknav.min.js"></script>
+    <script src="./assets/js/owl.carousel.min.js"></script>
 
-    <!-- Blog Area End -->
-    <div id="footer-placeholder"></div>
-  </main>
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-  <!-- Bootstrap 4.1.3 JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-  <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
-  <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
-  <script src="./assets/js/popper.min.js"></script>
-  <script src="./assets/js/bootstrap.min.js"></script>
-  <script src="./assets/js/jquery.slicknav.min.js"></script>
-  <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/slick.min.js"></script>
+    <script src="./assets/js/wow.min.js"></script>
+    <script src="./assets/js/animated.headline.js"></script>
+    <script src="./assets/js/jquery.magnific-popup.js"></script>
+    <script src="./assets/js/jquery.scrollUp.min.js"></script>
+    <script src="./assets/js/jquery.nice-select.min.js"></script>
+    <script src="./assets/js/jquery.sticky.js"></script>
+    <script src="./assets/js/contact.js"></script>
 
-  <!-- Flatpickr JS -->
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="./assets/js/jquery.form.js"></script>
+    <script src="./assets/js/jquery.validate.min.js"></script>
+    <script src="./assets/js/mail-script.js"></script>
+    <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="./assets/js/plugins.js"></script>
 
-  <script src="./assets/js/slick.min.js"></script>
-  <script src="./assets/js/wow.min.js"></script>
-  <script src="./assets/js/animated.headline.js"></script>
-  <script src="./assets/js/jquery.magnific-popup.js"></script>
-  <script src="./assets/js/jquery.scrollUp.min.js"></script>
-  <script src="./assets/js/jquery.nice-select.min.js"></script>
-  <script src="./assets/js/jquery.sticky.js"></script>
-  <script src="./assets/js/contact.js"></script>
-
-  <script src="./assets/js/jquery.form.js"></script>
-  <script src="./assets/js/jquery.validate.min.js"></script>
-  <script src="./assets/js/mail-script.js"></script>
-  <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
-  <script src="./assets/js/plugins.js"></script>
-
-  <script src="./assets/js/main.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      flatpickr("#travel-calendar", {
-        dateFormat: "Y-m-d",
-        minDate: "today",
-        mode: "range"
-      });
-    });
-
-    document.addEventListener("DOMContentLoaded", function () {
-      // Lấy các phần tử input và nút
-      const adultsInput = document.getElementById('adults');
-      const childrenInput = document.getElementById('children');
-      const errorMessage = document.getElementById('error-message');
-
-      // Hàm xử lý sự kiện nhập liệu
-      function handleInputChange(inputElement, maxLimit) {
-        const value = parseInt(inputElement.value);
-
-        if (isNaN(value) || value === "" || value < 0) {
-          errorMessage.style.display = 'block';
-          errorMessage.textContent = 'Please enter a valid number.';
-          inputElement.classList.add('is-invalid');
-        } else if (value > maxLimit) {
-          errorMessage.style.display = 'block';
-          errorMessage.textContent = `The maximum allowed number is ${maxLimit}.`;
-          inputElement.classList.add('is-invalid');
-        } else {
-          errorMessage.style.display = 'none';
-          inputElement.classList.remove('is-invalid');
-        }
-      }
-
-      // Xử lý sự kiện thay đổi giá trị khi người dùng nhập vào
-      adultsInput.addEventListener('input', function () {
-        handleInputChange(adultsInput, 20); // Truyền giá trị maxLimit là 20
+    <script src="./assets/js/main.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        flatpickr("#travel-calendar", {
+          dateFormat: "Y-m-d",
+          minDate: "today",
+          mode: "range",
+        });
       });
 
-      childrenInput.addEventListener('input', function () {
-        handleInputChange(childrenInput, 20); // Truyền giá trị maxLimit là 20
-      });
+      document.addEventListener("DOMContentLoaded", function () {
+        // Lấy các phần tử input và nút
+        const adultsInput = document.getElementById("adults");
+        const childrenInput = document.getElementById("children");
+        const errorMessage = document.getElementById("error-message");
 
-      // Tăng số lượng người lớn
-      document.getElementById('increase-adults').addEventListener('click', function () {
-        let currentValue = parseInt(adultsInput.value);
-        if (currentValue < 20) {
-          adultsInput.value = currentValue + 1;
-          adultsInput.dispatchEvent(new Event('input'));
-        }
-      });
+        // Hàm xử lý sự kiện nhập liệu
+        function handleInputChange(inputElement, maxLimit) {
+          const value = parseInt(inputElement.value);
 
-      // Giảm số lượng người lớn
-      document.getElementById('decrease-adults').addEventListener('click', function () {
-        let currentValue = parseInt(adultsInput.value);
-        if (currentValue > 1) {
-          adultsInput.value = currentValue - 1;
-          adultsInput.dispatchEvent(new Event('input'));
-        }
-      });
-
-      // Tăng số lượng trẻ em
-      document.getElementById('increase-children').addEventListener('click', function () {
-        let currentValue = parseInt(childrenInput.value);
-        if (currentValue < 20) {
-          childrenInput.value = currentValue + 1;
-          childrenInput.dispatchEvent(new Event('input'));
-        }
-      });
-
-      // Giảm số lượng trẻ em
-      document.getElementById('decrease-children').addEventListener('click', function () {
-        let currentValue = parseInt(childrenInput.value);
-        if (currentValue > 0) {
-          childrenInput.value = currentValue - 1;
-          childrenInput.dispatchEvent(new Event('input'));
-        }
-      });
-    });
-
-    let selectedDestinations = [];
-    const prevBtn = document.querySelector(".prev-step-btn");
-    let currentStep = 1;
-
-    const destinationImages = {
-      "Hue": "assets/img/service/Hue/Hue.jpg",
-      "Ha Noi": "assets/img/service/HaNoi/Hanoi.jpg",
-      "Da Nang": "assets/img/service/Danang.jpg",
-      "Hoi An": "assets/img/service/HoiAn/hoianhoanghon.jpg",
-      "Ninh Binh": "assets/img/service/NinhBinh/Ninh Binh.jpg",
-      "Quang Ninh": "assets/img/service/QuangNinh/halongbayhoanghon.jpg",
-    };
-
-    function showStep(step) {
-      // Tắt hiện step hiện tại với độ trễ
-      document
-        .querySelectorAll(".step-container")
-        .forEach((container, index) => {
-          if (index + 1 === currentStep) {
-            container.style.opacity = "0"; // Ẩn dần
-            setTimeout(() => container.classList.remove("active"), 500); // Ẩn sau khi hiệu ứng chạy xong
+          if (isNaN(value) || value === "" || value < 0) {
+            errorMessage.style.display = "block";
+            errorMessage.textContent = "Please enter a valid number.";
+            inputElement.classList.add("is-invalid");
+          } else if (value > maxLimit) {
+            errorMessage.style.display = "block";
+            errorMessage.textContent = `The maximum allowed number is ${maxLimit}.`;
+            inputElement.classList.add("is-invalid");
+          } else {
+            errorMessage.style.display = "none";
+            inputElement.classList.remove("is-invalid");
           }
+        }
+
+        // Xử lý sự kiện thay đổi giá trị khi người dùng nhập vào
+        adultsInput.addEventListener("input", function () {
+          handleInputChange(adultsInput, 20); // Truyền giá trị maxLimit là 20
         });
 
-      // Hiển thị step mới với độ trễ
-      setTimeout(() => {
+        childrenInput.addEventListener("input", function () {
+          handleInputChange(childrenInput, 20); // Truyền giá trị maxLimit là 20
+        });
+
+        // Tăng số lượng người lớn
+        document
+          .getElementById("increase-adults")
+          .addEventListener("click", function () {
+            let currentValue = parseInt(adultsInput.value);
+            if (currentValue < 20) {
+              adultsInput.value = currentValue + 1;
+              adultsInput.dispatchEvent(new Event("input"));
+            }
+          });
+
+        // Giảm số lượng người lớn
+        document
+          .getElementById("decrease-adults")
+          .addEventListener("click", function () {
+            let currentValue = parseInt(adultsInput.value);
+            if (currentValue > 1) {
+              adultsInput.value = currentValue - 1;
+              adultsInput.dispatchEvent(new Event("input"));
+            }
+          });
+
+        // Tăng số lượng trẻ em
+        document
+          .getElementById("increase-children")
+          .addEventListener("click", function () {
+            let currentValue = parseInt(childrenInput.value);
+            if (currentValue < 20) {
+              childrenInput.value = currentValue + 1;
+              childrenInput.dispatchEvent(new Event("input"));
+            }
+          });
+
+        // Giảm số lượng trẻ em
+        document
+          .getElementById("decrease-children")
+          .addEventListener("click", function () {
+            let currentValue = parseInt(childrenInput.value);
+            if (currentValue > 0) {
+              childrenInput.value = currentValue - 1;
+              childrenInput.dispatchEvent(new Event("input"));
+            }
+          });
+      });
+
+      let selectedDestinations = [];
+      const prevBtn = document.querySelector(".prev-step-btn");
+      let currentStep = 1;
+
+      const destinationImages = {
+        Hue: "assets/img/service/Hue/Hue.jpg",
+        "Ha Noi": "assets/img/service/HaNoi/Hanoi.jpg",
+        "Da Nang": "assets/img/service/Danang.jpg",
+        "Hoi An": "assets/img/service/HoiAn/hoianhoanghon.jpg",
+        "Ninh Binh": "assets/img/service/NinhBinh/Ninh Binh.jpg",
+        "Quang Ninh": "assets/img/service/QuangNinh/halongbayhoanghon.jpg",
+      };
+
+      function showStep(step) {
+        // Tắt hiện step hiện tại với độ trễ
         document
           .querySelectorAll(".step-container")
           .forEach((container, index) => {
-            if (index + 1 === step) {
-              container.classList.add("active");
-              setTimeout(() => (container.style.opacity = "1"), 1); // Hiển thị dần
+            if (index + 1 === currentStep) {
+              container.style.opacity = "0"; // Ẩn dần
+              setTimeout(() => container.classList.remove("active"), 500); // Ẩn sau khi hiệu ứng chạy xong
             }
           });
-      }, 500);
 
-      // Cập nhật class active cho tiêu đề các step
-      document.querySelectorAll(".step-header").forEach((header, index) => {
-        header.classList.toggle("active", index + 1 === step);
-      });
+        // Hiển thị step mới với độ trễ
+        setTimeout(() => {
+          document
+            .querySelectorAll(".step-container")
+            .forEach((container, index) => {
+              if (index + 1 === step) {
+                container.classList.add("active");
+                setTimeout(() => (container.style.opacity = "1"), 1); // Hiển thị dần
+              }
+            });
+        }, 500);
 
-      updateNavigationButtons(step);
-      currentStep = step;
-      if (step === 3) {
-        updateSelectedDestinations();
-        renderStep3(); // Cập nhật nội dung cho step 3 dựa trên các lựa chọn
-      }
-    }
-
-    function nextStep() {
-      if (currentStep < 5) {
-        showStep(currentStep + 1);
-      }
-    }
-
-    function prevStep() {
-      if (currentStep > 1) {
-        showStep(currentStep - 1);
-      }
-    }
-
-    function updateNavigationButtons(step) {
-      const prevBtn = document.querySelector(".prev-step-btn");
-      const nextBtn = document.querySelector(".next-step-btn");
-
-      if (step === 1) {
-        prevBtn.style.display = "inline-block";
-        nextBtn.style.display = "inline-block";
-      } else if (step === 2) {
-        prevBtn.style.display = "inline-block";
-        nextBtn.style.display = "inline-block";
-      } else if (step === 3) {
-        prevBtn.style.display = "inline-block";
-        nextBtn.style.display = "inline-block";
-      } else if (step === 4) {
-        prevBtn.style.display = "inline-block";
-        nextBtn.style.display = "inline-block";
-      }
-
-      else if (step === 5) {
-        prevBtn.style.display = "inline-block";
-        nextBtn.style.display = "none";
-      }
-    }
-
-    function updateSelectedDestinations() {
-      selectedDestinations = [];
-      document
-        .querySelectorAll("#step-1 input[type='checkbox']")
-        .forEach((checkbox, index) => {
-          if (checkbox.checked) {
-            selectedDestinations.push(
-              checkbox.parentElement.textContent.trim()
-            );
-          }
+        // Cập nhật class active cho tiêu đề các step
+        document.querySelectorAll(".step-header").forEach((header, index) => {
+          header.classList.toggle("active", index + 1 === step);
         });
 
-      // Nếu không có lựa chọn nào, thêm "Hanoi" vào mặc định
-      if (selectedDestinations.length === 0) {
-        selectedDestinations.push("Ha Noi");
+        updateNavigationButtons(step);
+        currentStep = step;
+        if (step === 3) {
+          updateSelectedDestinations();
+          if (selectedDestinations.length === 0) {
+            alert(
+              "Please select at least one destination in Step 1 before proceeding to Step 3."
+            );
+            showStep(1);
+
+            return;
+          }
+          renderStep3();
+        }
+        
+        if (step === 4) {
+          renderStep4();
+        }
       }
-    }
 
-    function renderStep3() {
-      const step3Container = document.getElementById("step-3");
-      let htmlContent = "<h3 class='text-center'>Step 3: Activities</h3>";
+      function nextStep() {
+        if (currentStep < 5) {
+          showStep(currentStep + 1);
+        }
+      }
 
-      // Duyệt qua danh sách các địa điểm đã chọn và tạo các row tương ứng
-      selectedDestinations.forEach((destination) => {
-        let details = "";
+      function prevStep() {
+        if (currentStep > 1) {
+          showStep(currentStep - 1);
+        }
+      }
 
-        // Kiểm tra và thêm chi tiết cho từng điểm đến
-        if (destination === "Hue") {
-          details = `
-        <ul>
-          <li><input type="checkbox" /> Yoga and Meditation: Diverse yoga and meditation classes, ranging from mindfulness to dynamic practices.</li>
-          <li><input type="checkbox" /> Physical Development Focus: Specialized fitness classes such as Pilates and aerobics.</li>
-          <li><input type="checkbox" /> Outdoor Exercise: Participate in running, hiking, and nature-based fitness activities.</li>
-          <li><input type="checkbox" /> Gardening Program: Gardening and plant care to relax and improve mental well-being.</li>
-          <li><input type="checkbox" /> Sound Therapy and Music Healing: Stress reduction through relaxing sounds.</li>
-          <li><input type="checkbox" /> Spa Therapies and Massage: Skin care treatments and stress relief through massage.</li>
-          <li><input type="checkbox" /> Herbal Baths: Relaxing bath therapies like hot, cold, and herbal baths.</li>
-          <li><input type="checkbox" /> Post-Injury Recovery: Health recovery programs including physiotherapy.</li>
-          <li><input type="checkbox" /> Sightseeing at Famous Attractions: Visit iconic places such as Hue Imperial Citadel, Khai Dinh Tomb, Thien Mu Pagoda, etc.</li>
-      `;
-        } else if (destination === "Ha Noi") {
-          details = `
-        <ul>
-          <li><input type="checkbox" /> Ho Chi Minh Mausoleum: The resting place of President Ho Chi Minh, a significant historical site with solemn architecture and expansive grounds.</li>
-          <li><input type="checkbox" /> One Pillar Pagoda:  One of Hanoi is unique architectural structures, reflecting the culture of Buddhism.</li>
-          <li><input type="checkbox" /> Temple of Literature - Quoc Tu Giam: An ancient educational centre, marking the development of Vietnam is education system.</li>
-          <li><input type="checkbox" /> Hanoi Old Quarter: With over 36 streets, this historic area preserves the cultural and architectural heritage of ancient Hanoi.</li>
-          <li><input type="checkbox" /> Vietnam Museum of Ethnology: A museum displaying cultural artefacts from 54 ethnic groups in Vietnam, offering a deeper understanding of the country's cultural diversity.</li>
-          <li><input type="checkbox" /> Duong Lam Ancient Village: Located not far from Hanoi, this village preserves the traditional cultural beauty of Northern Vietnam's rural life.</li>
-        </ul>
-      `;
-        } else if (destination === "Da Nang") {
-          details = `
-        <ul>
-          <li><input type="checkbox" /> Yoga: Engage in gentle Hatha or Vinyasa yoga to enhance flexibility, relaxation, and mental clarity.</li>
-          <li><input type="checkbox" /> Breathwork Class: Participate in a Breathwork class to release tension and increase mindfulness through guided breathing techniques.</li>
-          <li><input type="checkbox" /> Retreat Therapy Session: Enjoy a therapeutic retreat session focused on mental and emotional well-being.</li>
-          <li><input type="checkbox" /> Workshop on Creating Feng Shui Stone Bracelets: Learn to create Feng Shui stone bracelets at Non Nuoc Stone Village, where each bracelet is imbued with cultural and spiritual significance.</li>
-          <li><input type="checkbox" /> Relaxing Spa Services: Unwind with spa treatments designed to rejuvenate your body and mind.</li>
-          <li><input type="checkbox" /> Sightseeing at Famous Attractions: Visit iconic places such as Ba Na Hill, Non Nuoc Stone Carving Village, Dragon Bridge,etc.</li>
-        </ul>
-      `;
-        } else if (destination === "Hoi An") {
-          details = `
-        <ul>
-          <li><input type="checkbox" /> Gardening Program: Engage in gardening and plant care to relax and improve mental well-being.</li>
-          <li><input type="checkbox" /> Art Expression Therapy: Experience relaxation through painting and other artistic forms.</li>
-          <li><input type="checkbox" /> Cultural Exploration: Learn about local culture, cuisine, and customs.</li>
-          <li><input type="checkbox" /> Connection Activities: Group programs to enhance positive communication and connection.</liv>
-          <li><input type="checkbox" /> Yoga and Meditation: Various yoga and meditation classes, from mindfulness to dynamic practices.</liv>
-          <li><input type="checkbox" /> Emotional Therapy Through Writing: Keep a journal to release emotions and find clarity.</liv>
-          <li><input type="checkbox" /> Immersion in Nature: Activities like camping and hiking to connect with the natural environment.</liv>
-          <li><input type="checkbox" /> Sightseeing at Famous Attractions: Visit iconic places like Hoi An Ancient Town, Cham Islands, and Bay Mau Coconut Forest,etc.</liv>
-        </ul>
-      `;
-        } else if (destination === "Ninh Binh") {
-          details = `
-        <ul>
-          <li><input type="checkbox" /> Spa Services: Enjoy a variety of rejuvenating treatments at the spa.</li>
-          <li><input type="checkbox" /> Cycling Through Nature: Explore the scenic landscapes of Cuc Phuong National Park on a bicycle ride.</li>
-          <li><input type="checkbox" /> Workshops: Participate in engaging classes to experience the local culture.</li>
-          <li><input type="checkbox" /> Natural Fabric Dyeing: Experience the traditional art of dyeing fabrics using natural ingredients.</li>
-          <li><input type="checkbox" /> Conical Hat Painting: Personalise a traditional Vietnamese conical hat with your unique designs.</li>
-          <li><input type="checkbox" /> Tree Planting: Plant trees to reconnect with nature and contribute to environmental conservation.</li>
-          <li><input type="checkbox" /> Candle Making: Craft handmade candles in this calming and creative workshop.</li>
-          <li><input type="checkbox" /> Sightseeing at Famous Attractions: Visit iconic places such as Trang An, Hoa Lu Ancient Capital,etc.</li>
+      function updateNavigationButtons(step) {
+        const prevBtn = document.querySelector(".prev-step-btn");
+        const nextBtn = document.querySelector(".next-step-btn");
 
-        </ul>
-      `;
-        } else if (destination === "Quang Ninh") {
-          details = `
-        <ul>
-          <li><input type="checkbox" /> Yoga and massage: Visitors will participate in a variety of yoga activities such as: herbal steam bath, herbal bath to restore vitality, yoga practice, professional massage.</li>
-          <li><input type="checkbox" /> Meditation: Helps visitors relax their minds.</li>
-          <li><input type="checkbox" /> Outdoor Exercise: Kayaking and exploring the majestic natural beauty.</li>
-          <li><input type="checkbox" /> Cooking class: Learn and practise how to prepare traditional Vietnamese dishes.</li>
-          <li><input type="checkbox" /> Immerse yourself in nature: squid fishing on a cruise, cycling and sightseeing.</li>
-          <li><input type="checkbox" /> Visit famous places such as: Ha Long Bay, Co To Island, Phoenix Mountain, etc.</li>
-        </ul>
-      `;
+        if (step === 1) {
+          prevBtn.style.display = "inline-block";
+          nextBtn.style.display = "inline-block";
+        } else if (step === 2) {
+          prevBtn.style.display = "inline-block";
+          nextBtn.style.display = "inline-block";
+        } else if (step === 3) {
+          prevBtn.style.display = "inline-block";
+          nextBtn.style.display = "inline-block";
+        } else if (step === 4) {
+          prevBtn.style.display = "inline-block";
+          nextBtn.style.display = "inline-block";
+        } else if (step === 5) {
+          prevBtn.style.display = "inline-block";
+          prevBtn.style.display = "inline-block";
+        }
+      }
+
+      function updateSelectedDestinations() {
+        selectedDestinations = [];
+        document
+          .querySelectorAll("#step-1 input[type='checkbox']")
+          .forEach((checkbox, index) => {
+            if (checkbox.checked) {
+              selectedDestinations.push(
+                checkbox.parentElement.textContent.trim()
+              );
+            }
+          });
+      }
+
+      function renderStep3() {
+        const step3Container = document.getElementById("step-3");        
+        selectedDestinations.forEach((destination) => {
+          let destinationId = "";
+          if(destination === "Da Nang") {
+             destinationId = "danangID";
+          } else if (destination === "Ha Noi") {
+             destinationId = "hanoiID";
+          } else if (destination === "Hue") {
+             destinationId = "hueID";
+          } else if (destination === "Hoi An") {
+             destinationId = "hoianID";
+          } else if (destination === "Ninh Binh") {
+             destinationId = "ninhbinhID";
+          } else if (destination === "Quang Ninh") {
+             destinationId = "quangninhID";
+          }
+          console.log(destinationId);
+          
+          const destinationElement = document.getElementById(destinationId);
+          if (destinationElement) {
+            destinationElement.style.display = ""; 
         }
 
-        // Lấy URL ảnh từ đối tượng destinationImages
-        const imageUrl = destinationImages[destination] || "https://via.placeholder.com/300x200";
 
-        // Tạo ra thẻ HTML cho từng địa điểm đã chọn
-        htmlContent += `
-      <div class="row mb-4">
-        <!-- Cột bên trái: hình ảnh -->
-        <div class="col-md-5">
-          <div class="card">
-            <img src="${imageUrl}" class="step-image" alt="${destination}" />
-          </div>
-        </div>
+        });
+        
+      }
 
-        <!-- Cột bên phải: tên tour và các chi tiết -->
-        <div class="col-md-7 d-flex flex-column">
-          <h4>${destination}</h4>
-          <div class="tour-details">
-            ${details}
-          </div>
-        </div>
-      </div>
-    `;
-      });
+      function renderStep4() {
+        const step3Container = document.getElementById("step-4");
+        let htmlContent = "<h3 class='text-center'>Step 4: Your Tour</h3>";
+      }
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer-placeholder").innerHTML = data;
+          initializePlugins();
+        })
+        .catch((error) => console.error("Error loading footer:", error));
 
-      step3Container.innerHTML = htmlContent;
-    }
+      fetch("header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header-placeholder").innerHTML = data;
+          initializePlugins();
+        })
+        .catch((error) => console.error("Error loading header:", error));
 
-    fetch("footer.html")
-      .then((response) => response.text())
-      .then((data) => {
-        document.getElementById("footer-placeholder").innerHTML = data;
-        initializePlugins();
-      })
-      .catch((error) => console.error("Error loading footer:", error));
-
-    fetch("header.html")
-      .then((response) => response.text())
-      .then((data) => {
-        document.getElementById("header-placeholder").innerHTML = data;
-        initializePlugins();
-      })
-      .catch((error) => console.error("Error loading header:", error));
-
-    fetch("wellnessTour.html")
-      .then((response) => response.text())
-      .then((data) => {
-        document.getElementById("wellnessTour-placeholder").innerHTML = data;
-        initializePlugins();
-      })
-      .catch((error) => console.error("Error loading wellnessTour:", error));
-  </script>
-</body>
-
+      fetch("wellnessTour.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("wellnessTour-placeholder").innerHTML = data;
+          initializePlugins();
+        })
+        .catch((error) => console.error("Error loading wellnessTour:", error));
+    </script>
+  </body>
 </html>
