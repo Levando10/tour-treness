@@ -12,6 +12,9 @@
   <!-- Bootstrap 4.1.3 CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
 
+  <!-- Flatpickr CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
   <!-- CSS here -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
   <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
@@ -25,6 +28,10 @@
   <link rel="stylesheet" href="assets/css/nice-select.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="assets/css/responsive.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
   <style>
     span {
       font-family: "Barlow Condensed" !important;
@@ -40,7 +47,7 @@
     }
 
     .step-header.active {
-      background-color: rgb(5, 100, 5);
+      background-color: #2d572c;
       color: #fff;
       border-radius: 5px;
     }
@@ -97,7 +104,6 @@
     .step-image {
       width: 100%;
       height: auto;
-      max-height: 200px;
       object-fit: cover;
       margin-bottom: 10px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -115,7 +121,7 @@
     }
 
     .next-step-btn {
-      background-color: rgb(5, 100, 5);
+      background-color: #2d572c !important;
       color: #fff;
       padding: 10px 20px;
       border: none;
@@ -141,6 +147,98 @@
       margin-right: 10px;
       /* Khoảng cách giữa 2 nút */
     }
+
+    #step-2 .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: box-shadow 0.3s ease;
+    }
+
+    #step-2 .card:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #step-2 .card img {
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .input-group button {
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .input-group input {
+      text-align: center;
+      width: 80px;
+      /* Chỉnh kích thước input */
+    }
+
+    #travel-companions:invalid {
+      border-color: red;
+    }
+
+    #travel-companions:valid {
+      border-color: #2d572c;
+    }
+
+    .is-invalid {
+      border-color: red;
+    }
+
+    .text-danger {
+      font-size: 0.875rem;
+    }
+
+    .btn-outline-secondary {
+      border: 1px solid #ccc;
+      background-color: #fff;
+      color: #333;
+      padding: 10px 16px;
+      font-size: 18px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline-secondary:hover {
+      background-color: #2d572c;
+      border-color: #888;
+      color: black;
+
+    }
+
+    /* Hiệu ứng khi nút được nhấn */
+    .btn-outline-secondary:active {
+      border-color: #2d572c;
+    }
+
+    .text-number {
+      margin: 0 4px;
+      border-radius: 4px !important;
+    }
+
+    .form-label {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .form-label-sub {
+      font-weight: 500;
+      font-size: 14px;
+    }
   </style>
 </head>
 
@@ -164,8 +262,8 @@
         <span class="step-header active" onclick="showStep(1)">Step 1: Destinations</span>
         <span class="step-header" onclick="showStep(2)">Step 2: Accommodation</span>
         <span class="step-header" onclick="showStep(3)">Step 3: Activities</span>
-        <span class="step-header" onclick="showStep(4)">Step 4: Summary</span>
-        <span class="step-header" onclick="showStep(5)">Step 5: Your Details</span>
+        <span class="step-header" onclick="showStep(4)">Step 4: Your Tour</span>
+        <span class="step-header" onclick="showStep(5)">Step 5: Your Information</span>
       </div>
 
       <!-- Step 1: Destinations -->
@@ -223,53 +321,101 @@
         </div>
       </div>
 
-      <!-- Step 2: Accommodation -->
       <div class="step-container" id="step-2">
-        <h3 class="text-center">Step 2: Accommodation</h3>
+        <h3 class="text-center mb-4">Step 2: Accommodation</h3>
+
         <div class="row">
-          <div class="col-md-4">
-            <div class="card">
-              <input type="datetime-local">
+          <!-- Left Section -->
+          <div class="col-md-6">
+            <!-- Calendar -->
+            <div class="mb-4">
+              <label for="travel-calendar" class="form-label">Select Your Travel Dates:</label>
+              <div class="input-group">
+                <input type="text" id="travel-calendar" class="form-control">
+                <span class="input-group-text" style="height: 38px;">
+                  <i class="fas fa-calendar-alt"></i> <!-- Icon lịch -->
+                </span>
+              </div>
             </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card">
-              <label>
-                <img src="https://via.placeholder.com/300x200" class="step-image" alt="Culture & Heritages" />
-                <input type="checkbox" /> Culture & Heritages
-              </label>
+
+            <!-- Question: Who will travel with you? -->
+
+            <div class="mb-4">
+              <label for="travel-companions" class="form-label">Who will travel with you?</label>
+
+              <!-- Người lớn -->
+              <div class="mb-2">
+                <label for="adults" class="form-label-sub">Adults (Age > 11):</label>
+                <div class="input-group">
+                  <button class="btn btn-outline-secondary" type="button" id="decrease-adults">-</button>
+                  <input type="number" id="adults" class="text-number form-control text-center" value="1" min="1"
+                    max="20" step="1" aria-label="Number of adults">
+                  <button class="btn btn-outline-secondary" type="button" id="increase-adults">+</button>
+                </div>
+              </div>
+
+              <!-- Trẻ em -->
+              <div class="mb-2">
+                <label for="children" class="form-label-sub">Children (Age 0-11):</label>
+                <div class="input-group">
+                  <button class="btn btn-outline-secondary" type="button" id="decrease-children">-</button>
+                  <input type="number" id="children" class="text-number form-control text-center" value="0" min="0"
+                    max="20" step="1" aria-label="Number of children">
+                  <button class=" btn-outline-secondary" type="button" id="increase-children">+</button>
+                </div>
+              </div>
+
+              <!-- Error message -->
+              <small id="error-message" class="text-danger" style="display: none;">Please enter a valid number.</small>
             </div>
+
           </div>
-          <div class="col-md-4">
-            <div class="card">
-              <label>
-                <img src="https://via.placeholder.com/300x200" class="step-image" alt="Culture & Heritages" />
-                <input type="checkbox" /> Culture & Heritages
-              </label>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card">
-              <label>
-                <img src="https://via.placeholder.com/300x200" class="step-image" alt="Culture & Heritages" />
-                <input type="checkbox" /> Culture & Heritages
-              </label>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card">
-              <label>
-                <img src="https://via.placeholder.com/300x200" class="step-image" alt="Culture & Heritages" />
-                <input type="checkbox" /> Culture & Heritages
-              </label>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card">
-              <label>
-                <img src="https://via.placeholder.com/300x200" class="step-image" alt="Culture & Heritages" />
-                <input type="checkbox" /> Culture & Heritages
-              </label>
+
+          <!-- Right Section -->
+          <div class="col-md-6">
+            <!-- Hotel Style -->
+            <label class="form-label">Hotel Style:</label>
+            <div class="row">
+              <!-- Luxury -->
+              <div class="col-6 mb-3">
+                <div class="card">
+                  <img src="assets/img/service/luxury.jpg" class="card-img-top" alt="Luxury Hotel">
+                  <div class="card-body text-center">
+                    <input type="radio" name="hotelStyle" id="luxury" value="Luxury">
+                    <label for="luxury">Luxury (4 - 5 stars)</label>
+                  </div>
+                </div>
+              </div>
+              <!-- Comfort -->
+              <div class="col-6 mb-3">
+                <div class="card">
+                  <img src="assets/img/service/comfort.jpg" class="card-img-top" alt="Comfort Hotel">
+                  <div class="card-body text-center">
+                    <input type="radio" name="hotelStyle" id="comfort" value="Comfort">
+                    <label for="comfort">Comfort (3 - 4 stars)</label>
+                  </div>
+                </div>
+              </div>
+              <!-- Standard -->
+              <div class="col-6 mb-3">
+                <div class="card">
+                  <img src="assets/img/service/standard.jpg" class="card-img-top" alt="Standard Hotel">
+                  <div class="card-body text-center">
+                    <input type="radio" name="hotelStyle" id="standard" value="Standard">
+                    <label for="standard">Standard (2 - 3 stars)</label>
+                  </div>
+                </div>
+              </div>
+              <!-- Self Booking -->
+              <div class="col-6 mb-3">
+                <div class="card">
+                  <img src="assets/img/service/selfBooking.jpg" class="card-img-top" alt="Self Booking">
+                  <div class="card-body text-center">
+                    <input type="radio" name="hotelStyle" id="selfBooking" value="SelfBooking">
+                    <label for="selfBooking">Self Booking</label>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -282,7 +428,13 @@
 
       <!-- Step 4: Image Search -->
       <div class="step-container" id="step-4">
-        <h3 class="text-center">Step 4: Your Details</h3>
+        <h3 class="text-center">Step 4: Your Tour</h3>
+
+      </div>
+
+      <!-- Step 5:  -->
+      <div class="step-container" id="step-5">
+        <h3 class="text-center">Step 5: Your Information</h3>
         <form>
           <div class="form-group">
             <label for="name">Your Name</label>
@@ -327,6 +479,9 @@
   <script src="./assets/js/jquery.slicknav.min.js"></script>
   <script src="./assets/js/owl.carousel.min.js"></script>
 
+  <!-- Flatpickr JS -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
   <script src="./assets/js/slick.min.js"></script>
   <script src="./assets/js/wow.min.js"></script>
   <script src="./assets/js/animated.headline.js"></script>
@@ -344,6 +499,84 @@
 
   <script src="./assets/js/main.js"></script>
   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      flatpickr("#travel-calendar", {
+        dateFormat: "Y-m-d",
+        minDate: "today",
+        mode: "range"
+      });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      // Lấy các phần tử input và nút
+      const adultsInput = document.getElementById('adults');
+      const childrenInput = document.getElementById('children');
+      const errorMessage = document.getElementById('error-message');
+
+      // Hàm xử lý sự kiện nhập liệu
+      function handleInputChange(inputElement, maxLimit) {
+        const value = parseInt(inputElement.value);
+
+        if (isNaN(value) || value === "" || value < 0) {
+          errorMessage.style.display = 'block';
+          errorMessage.textContent = 'Please enter a valid number.';
+          inputElement.classList.add('is-invalid');
+        } else if (value > maxLimit) {
+          errorMessage.style.display = 'block';
+          errorMessage.textContent = `The maximum allowed number is ${maxLimit}.`;
+          inputElement.classList.add('is-invalid');
+        } else {
+          errorMessage.style.display = 'none';
+          inputElement.classList.remove('is-invalid');
+        }
+      }
+
+      // Xử lý sự kiện thay đổi giá trị khi người dùng nhập vào
+      adultsInput.addEventListener('input', function () {
+        handleInputChange(adultsInput, 20); // Truyền giá trị maxLimit là 20
+      });
+
+      childrenInput.addEventListener('input', function () {
+        handleInputChange(childrenInput, 20); // Truyền giá trị maxLimit là 20
+      });
+
+      // Tăng số lượng người lớn
+      document.getElementById('increase-adults').addEventListener('click', function () {
+        let currentValue = parseInt(adultsInput.value);
+        if (currentValue < 20) {
+          adultsInput.value = currentValue + 1;
+          adultsInput.dispatchEvent(new Event('input'));
+        }
+      });
+
+      // Giảm số lượng người lớn
+      document.getElementById('decrease-adults').addEventListener('click', function () {
+        let currentValue = parseInt(adultsInput.value);
+        if (currentValue > 1) {
+          adultsInput.value = currentValue - 1;
+          adultsInput.dispatchEvent(new Event('input'));
+        }
+      });
+
+      // Tăng số lượng trẻ em
+      document.getElementById('increase-children').addEventListener('click', function () {
+        let currentValue = parseInt(childrenInput.value);
+        if (currentValue < 20) {
+          childrenInput.value = currentValue + 1;
+          childrenInput.dispatchEvent(new Event('input'));
+        }
+      });
+
+      // Giảm số lượng trẻ em
+      document.getElementById('decrease-children').addEventListener('click', function () {
+        let currentValue = parseInt(childrenInput.value);
+        if (currentValue > 0) {
+          childrenInput.value = currentValue - 1;
+          childrenInput.dispatchEvent(new Event('input'));
+        }
+      });
+    });
+
     let selectedDestinations = [];
     const prevBtn = document.querySelector(".prev-step-btn");
     let currentStep = 1;
@@ -394,7 +627,7 @@
     }
 
     function nextStep() {
-      if (currentStep < 4) {
+      if (currentStep < 5) {
         showStep(currentStep + 1);
       }
     }
@@ -410,7 +643,7 @@
       const nextBtn = document.querySelector(".next-step-btn");
 
       if (step === 1) {
-        prevBtn.style.display = "none";
+        prevBtn.style.display = "inline-block";
         nextBtn.style.display = "inline-block";
       } else if (step === 2) {
         prevBtn.style.display = "inline-block";
@@ -419,6 +652,11 @@
         prevBtn.style.display = "inline-block";
         nextBtn.style.display = "inline-block";
       } else if (step === 4) {
+        prevBtn.style.display = "inline-block";
+        nextBtn.style.display = "inline-block";
+      }
+
+      else if (step === 5) {
         prevBtn.style.display = "inline-block";
         nextBtn.style.display = "none";
       }
