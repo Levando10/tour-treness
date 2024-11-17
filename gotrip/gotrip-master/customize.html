@@ -814,6 +814,18 @@
         <!-- Step 4: Your Tour -->
         <div class="step-container" id="step-4">
           <h3 class="text-center">Step 4: Your Tour</h3>
+          <h3>Danh sách các địa điểm và hoạt động đã chọn:</h3>
+
+          <div id="row-1">
+            <h4>Địa điểm đã chọn: <span id="selected-destinations"></span></h4>
+          </div>
+        
+          <div id="row-2">
+            <h4>Ảnh của các địa điểm:</h4>
+            <div id="destination-images"></div>
+          </div>
+        
+          <div id="activities-list"></div>
         </div>
 
         <!-- Step 5:  -->
@@ -989,6 +1001,7 @@
       });
 
       let selectedDestinations = [];
+
       const prevBtn = document.querySelector(".prev-step-btn");
       let currentStep = 1;
 
@@ -1033,14 +1046,14 @@
         currentStep = step;
         if (step === 3) {
           updateSelectedDestinations();
-          if (selectedDestinations.length === 0) {
-            alert(
-              "Please select at least one destination in Step 1 before proceeding to Step 3."
-            );
-            showStep(1);
+          // if (selectedDestinations.length === 0) {
+          //   alert(
+          //     "Please select at least one destination in Step 1 before proceeding to Step 3."
+          //   );
+          //   showStep(1);
 
-            return;
-          }
+          //   return;
+          // }
           renderStep3();
         }
         
@@ -1112,23 +1125,145 @@
              destinationId = "ninhbinhID";
           } else if (destination === "Quang Ninh") {
              destinationId = "quangninhID";
-          }
-          console.log(destinationId);
-          
+          }          
           const destinationElement = document.getElementById(destinationId);
           if (destinationElement) {
             destinationElement.style.display = ""; 
         }
-
-
         });
         
       }
 
       function renderStep4() {
-        const step3Container = document.getElementById("step-4");
-        let htmlContent = "<h3 class='text-center'>Step 4: Your Tour</h3>";
+        let selectedDestinationsHue = [];
+      let selectedDestinationsDN = [];
+      let selectedDestinationsHN = [];
+      let selectedDestinationsHA = [];
+      let selectedDestinationsNB = [];
+      let selectedDestinationsQN = [];
+      
+        document.getElementById("selected-destinations").textContent = "";
+        document.getElementById("destination-images").innerHTML = "";
+        document.getElementById("activities-list").innerHTML = "";
+
+        document.querySelectorAll("#hueID input[type='checkbox']").forEach((checkbox, index) => {
+          if (checkbox.checked) {
+            selectedDestinationsHue.push(
+              checkbox.parentElement.textContent.trim()
+            );
+          }          
+        })
+
+        document.querySelectorAll("#danangID input[type='checkbox']").forEach((checkbox, index) => {
+          if (checkbox.checked) {
+            selectedDestinationsDN.push(
+              checkbox.parentElement.textContent.trim()
+            );
+          }          
+        })
+
+        document.querySelectorAll("#hanoiID input[type='checkbox']").forEach((checkbox, index) => {
+          if (checkbox.checked) {
+            selectedDestinationsHN.push(
+              checkbox.parentElement.textContent.trim()
+            );
+          }          
+        })
+
+        document.querySelectorAll("#hoianID input[type='checkbox']").forEach((checkbox, index) => {
+          if (checkbox.checked) {
+            selectedDestinationsHA.push(
+              checkbox.parentElement.textContent.trim()
+            );
+          }          
+        })
+
+        document.querySelectorAll("#ninhbinhID input[type='checkbox']").forEach((checkbox, index) => {
+          if (checkbox.checked) {
+            selectedDestinationsNB.push(
+              checkbox.parentElement.textContent.trim()
+            );
+          }          
+        })
+
+        document.querySelectorAll("#quangninhID input[type='checkbox']").forEach((checkbox, index) => {
+          if (checkbox.checked) {
+            selectedDestinationsQN.push(
+              checkbox.parentElement.textContent.trim()
+            );
+          }          
+        })
+
+
+        const selectedDestinations = [];
+
+        if (selectedDestinationsHue.length > 0) selectedDestinations.push("Hue");
+  if (selectedDestinationsDN.length > 0) selectedDestinations.push("Da Nang");
+  if (selectedDestinationsHN.length > 0) selectedDestinations.push("Ha Noi");
+  if (selectedDestinationsHA.length > 0) selectedDestinations.push("Hoi An");
+  if (selectedDestinationsNB.length > 0) selectedDestinations.push("Ninh Binh");
+  if (selectedDestinationsQN.length > 0) selectedDestinations.push("Quang Ninh");
+document.getElementById("selected-destinations").textContent = selectedDestinations.join(' - ');
+
+// Hiển thị ảnh của các địa điểm đã chọn
+selectedDestinations.forEach(destination => {
+    const imageContainer = document.createElement("div");
+    const image = document.createElement("img");
+
+    // Sử dụng đối tượng destinationImages để lấy đường dẫn ảnh
+    image.src = destinationImages[destination];
+    image.alt = destination;
+    image.style.width = '100px';
+    image.style.height = '100px';
+    imageContainer.appendChild(image);
+    document.getElementById("destination-images").appendChild(imageContainer);
+  });
+
+  const activitiesContainer = document.getElementById("activities-list");
+
+  // Helper function to create activity list for each destination
+  const createActivityList = (destination, selectedActivities) => {
+    const destinationSection = document.createElement("div");
+    const destinationTitle = document.createElement("h4");
+    destinationTitle.textContent = destination;
+    destinationSection.appendChild(destinationTitle);
+
+    if (selectedActivities.length > 0) {
+      const activitiesList = document.createElement("ul");
+      selectedActivities.forEach(activity => {
+        const activityItem = document.createElement("li");
+        activityItem.textContent = activity;
+        activitiesList.appendChild(activityItem);
+      });
+      destinationSection.appendChild(activitiesList);
+    }
+
+    activitiesContainer.appendChild(destinationSection);
+  };
+
+  // Hiển thị các hoạt động cho từng địa điểm đã chọn
+  if (selectedDestinationsHue.length > 0) {
+    createActivityList("Hue", selectedDestinationsHue);
+  }
+  if (selectedDestinationsDN.length > 0) {
+    createActivityList("Da Nang", selectedDestinationsDN);
+  }
+  if (selectedDestinationsHN.length > 0) {
+    createActivityList("Ha Noi", selectedDestinationsHN);
+  }
+  if (selectedDestinationsHA.length > 0) {
+    createActivityList("Hoi An", selectedDestinationsHA);
+  }
+  if (selectedDestinationsNB.length > 0) {
+    createActivityList("Ninh Binh", selectedDestinationsNB);
+  }
+  if (selectedDestinationsQN.length > 0) {
+    createActivityList("Quang Ninh", selectedDestinationsQN);
+  }
+
       }
+
+
       fetch("footer.html")
         .then((response) => response.text())
         .then((data) => {
