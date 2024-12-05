@@ -813,7 +813,7 @@
 
           <!-- Destination Images -->
           <div class="container mb-4">
-            <h4 class="section-heading">Selected Destinations: <span id="selected-destinations" class="badge-container">
+            <h4 class="section-heading"><span id="selected-destinations" class="badge-container">
               </span>
             </h4>
             <div id="destination-images"></div>
@@ -821,24 +821,31 @@
 
           <!-- Activities List -->
           <div class="container mb-4">
-            <h4 class="section-heading">Activities at Selected Destinations:</h4>
+            <h4 class="section-heading">Activities:</h4>
             <div id="activities-list" class="activities-container"></div>
           </div>
 
           <div class="container mb-4 row">
             <!-- Notes Section -->
             <div class="col-md-6">
-              <h4 class="section-heading">Note:</h4>
+              <h4 class="section-heading">Notes:</h4>
               <ul>
-                <li>- Please bring your ID for hotel check-ins.</li>
-                <li>- Arrive 30 minutes early for tours.</li>
-                <li>- Make sure to confirm your bookings 24 hours in advance.</li>
+                <li>- Accurate Information: Provide accurate personal details for prompt itinerary confirmation.</li>
+                <li>- Seasonal Considerations: Choose activities based on season and weather conditions.</li>
+                <li>- Review Itinerary: Edit the suggested itinerary before submitting your request.</li>
+                <li>- Confirmation Time: Itineraries are confirmed within 24 hours of submission.</li>
+                <li>- Policy Awareness: Check policies on changes and cancellations to avoid fees.</li>
+                <li>- Additional Costs: Extra services may incur charges, notified before confirmation.</li>
+                <li>- Customer Support: Contact hotline or email for assistance with customization.</li>
+                <li>- Special Requests: Note dietary, health, or private service needs for better preparation.</li>
+                <li>- Advance Booking: Submit requests at least 14 days before departure for the best experience.</li>
+              </ul>
               </ul>
             </div>
 
             <!-- Comments Section -->
             <div class="col-md-6">
-              <h4 class="section-heading">Add Comment:</h4>
+              <h4 class="section-heading">Special Requests:</h4>
               <textarea style="resize: unset;height: 170px;" class="form-control" id="user-comments" rows="5"
                 placeholder="Enter your comments here..."></textarea>
             </div>
@@ -1185,8 +1192,7 @@
       document.getElementById("activities-list").innerHTML = "";
       const step4Container = document.getElementById("step-4-data");
       step4Container.innerHTML = `
-    <h4 class="section-heading" >Your Selection</h4>
-    <p class="custom-selection"><strong>Travel Dates:</strong> ${travelDates || "Not selected"}</p>
+    <p class="custom-selection"><strong>Dates:</strong> ${travelDates || "Not selected"}</p>
     <p class="custom-selection"><strong>Adults:</strong> ${adults}</p>
     <p class="custom-selection"><strong>Children:</strong> ${children}</p>
     <p class="custom-selection"><strong>Hotel Style:</strong> ${hotelStyle}</p>
